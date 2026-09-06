@@ -1,0 +1,189 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1100" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradients -->
+    <radialGradient id="bgGlow" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#4a2545" />
+      <stop offset="40%" stop-color="#24142f" />
+      <stop offset="85%" stop-color="#0e0717" />
+      <stop offset="100%" stop-color="#08040d" />
+    </radialGradient>
+    
+    <radialGradient id="starlightGlow" cx="50%" cy="30%" r="35%">
+      <stop offset="0%" stop-color="#ffd5bf" stop-opacity="0.6"/>
+      <stop offset="60%" stop-color="#dfb15b" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Gold Foil Gradients -->
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fdf4cf"/>
+      <stop offset="35%" stop-color="#dfb15b"/>
+      <stop offset="70%" stop-color="#b88628"/>
+      <stop offset="100%" stop-color="#f5d77f"/>
+    </linearGradient>
+
+    <linearGradient id="roseGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff0ea"/>
+      <stop offset="40%" stop-color="#e6af9a"/>
+      <stop offset="80%" stop-color="#b36d59"/>
+      <stop offset="100%" stop-color="#fadcce"/>
+    </linearGradient>
+
+    <!-- Gown Gradients -->
+    <linearGradient id="gownGrad" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#f3c5b5"/>
+      <stop offset="30%" stop-color="#d68a78"/>
+      <stop offset="70%" stop-color="#80384d"/>
+      <stop offset="100%" stop-color="#2a0d1a"/>
+    </linearGradient>
+
+    <linearGradient id="skinGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fedac2"/>
+      <stop offset="100%" stop-color="#e6b498"/>
+    </linearGradient>
+
+    <!-- Filter for soft glow -->
+    <filter id="glowFilter" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="800" height="1100" fill="url(#bgGlow)"/>
+  <circle cx="400" cy="380" r="380" fill="url(#starlightGlow)" />
+
+  <!-- Twinkling stars / bokeh in background -->
+  <g opacity="0.65">
+    <circle cx="150" cy="180" r="2.5" fill="#fff" opacity="0.8"/>
+    <circle cx="260" cy="110" r="1.5" fill="#fdf4cf" opacity="0.9"/>
+    <circle cx="650" cy="220" r="3" fill="#ffe0cf" opacity="0.7"/>
+    <circle cx="700" cy="120" r="2" fill="#fff" opacity="0.9"/>
+    <circle cx="100" cy="450" r="2" fill="#dfb15b" opacity="0.6"/>
+    <circle cx="680" cy="500" r="2.5" fill="#ffd5bf" opacity="0.8"/>
+    <circle cx="340" cy="80" r="2" fill="#fff" opacity="0.8"/>
+    <circle cx="520" cy="90" r="1.5" fill="#fdf4cf" opacity="0.7"/>
+    <!-- Bokeh circles -->
+    <circle cx="200" cy="250" r="28" fill="#e6af9a" opacity="0.08" filter="url(#glowFilter)"/>
+    <circle cx="600" cy="300" r="42" fill="#dfb15b" opacity="0.07" filter="url(#glowFilter)"/>
+    <circle cx="400" cy="180" r="35" fill="#ffffff" opacity="0.05" filter="url(#glowFilter)"/>
+  </g>
+
+  <!-- Silhouette & Gown of the Quinceañera Celebrant -->
+  <g id="celebrantFigure">
+    <!-- Voluminous Ballgown Skirt -->
+    <path d="M 220,680 Q 120,840 50,1100 L 750,1100 Q 680,840 580,680 Q 400,720 220,680 Z" fill="url(#gownGrad)"/>
+    
+    <!-- Gown Tulle / Sparkle Layers -->
+    <path d="M 260,700 Q 180,860 130,1100 L 670,1100 Q 620,860 540,700 Q 400,730 260,700 Z" fill="#ffffff" opacity="0.12"/>
+    <path d="M 310,720 Q 250,890 220,1100 L 580,1100 Q 550,890 490,720 Q 400,740 310,720 Z" fill="url(#roseGoldGrad)" opacity="0.25"/>
+
+    <!-- Gown Glitters -->
+    <circle cx="240" cy="820" r="2" fill="#fff" opacity="0.8"/>
+    <circle cx="380" cy="790" r="3" fill="#fdf4cf" opacity="0.9"/>
+    <circle cx="510" cy="840" r="2" fill="#fff" opacity="0.8"/>
+    <circle cx="300" cy="950" r="3" fill="#ffd5bf" opacity="0.7"/>
+    <circle cx="470" cy="980" r="2.5" fill="#fdf4cf" opacity="0.9"/>
+    <circle cx="600" cy="920" r="2" fill="#fff" opacity="0.8"/>
+    <circle cx="400" cy="900" r="3" fill="#ffffff" opacity="0.8"/>
+    <circle cx="180" cy="1020" r="2" fill="#fff" opacity="0.7"/>
+    <circle cx="620" cy="1040" r="2.5" fill="#dfb15b" opacity="0.8"/>
+
+    <!-- Bodice / Corset -->
+    <path d="M 320,530 L 310,685 Q 400,715 490,685 L 480,530 Q 400,560 320,530 Z" fill="#a8435d"/>
+    <path d="M 330,540 L 325,675 Q 400,700 475,675 L 470,540 Q 400,565 330,540 Z" fill="url(#roseGoldGrad)" opacity="0.4"/>
+    
+    <!-- Corset Embroidery Lines -->
+    <path d="M 350,545 Q 400,600 370,680" stroke="url(#goldGrad)" stroke-width="2" fill="none" opacity="0.7"/>
+    <path d="M 450,545 Q 400,600 430,680" stroke="url(#goldGrad)" stroke-width="2" fill="none" opacity="0.7"/>
+    <path d="M 400,555 L 400,695" stroke="url(#goldGrad)" stroke-width="1.5" fill="none" opacity="0.8"/>
+
+    <!-- Arms & Shoulders (Graceful Pose) -->
+    <path d="M 325,530 C 275,560 260,630 295,700 C 315,735 340,735 350,715 C 345,670 335,600 340,540 Z" fill="url(#skinGrad)"/>
+    <path d="M 475,530 C 525,560 540,630 505,700 C 485,735 460,735 450,715 C 455,670 465,600 460,540 Z" fill="url(#skinGrad)"/>
+
+    <!-- Delicate Rose Bouquet held in hands -->
+    <g transform="translate(370, 680)">
+      <circle cx="30" cy="20" r="32" fill="#3b1625" opacity="0.8"/>
+      <circle cx="20" cy="15" r="16" fill="#e27387"/>
+      <circle cx="38" cy="12" r="14" fill="#f5a4b4"/>
+      <circle cx="30" cy="28" r="18" fill="#c94462"/>
+      <circle cx="15" cy="28" r="12" fill="#ffd1dc"/>
+      <circle cx="45" cy="25" r="13" fill="#e88da0"/>
+      <!-- Gold baby's breath sparkles -->
+      <circle cx="5" cy="10" r="3" fill="#dfb15b"/>
+      <circle cx="55" cy="15" r="2.5" fill="#dfb15b"/>
+      <circle cx="35" cy="40" r="3" fill="#dfb15b"/>
+      <circle cx="25" cy="2" r="2" fill="#fff"/>
+    </g>
+
+    <!-- Neck & Chest -->
+    <path d="M 370,430 L 370,520 Q 400,545 430,520 L 430,430 Z" fill="url(#skinGrad)"/>
+    
+    <!-- Royal Diamond & Rose Gold Necklace -->
+    <path d="M 368,490 Q 400,528 432,490" stroke="url(#goldGrad)" stroke-width="2.5" fill="none"/>
+    <polygon points="400,525 394,535 400,545 406,535" fill="url(#goldGrad)" filter="url(#glowFilter)"/>
+    <circle cx="400" cy="535" r="3.5" fill="#ffffff"/>
+
+    <!-- Head & Face -->
+    <ellipse cx="400" cy="385" rx="55" ry="72" fill="url(#skinGrad)"/>
+
+    <!-- Elegant Hairstyle (Updo with cascading soft curls) -->
+    <path d="M 330,370 C 330,280 470,280 470,370 C 475,440 455,470 455,470 C 430,440 440,390 435,370 C 420,330 380,330 365,370 C 360,390 370,440 345,470 C 345,470 325,440 330,370 Z" fill="#23141a"/>
+    <ellipse cx="400" cy="285" rx="65" ry="48" fill="#1c0f15"/>
+    <path d="M 345,310 Q 400,250 455,310" stroke="#3d222e" stroke-width="8" fill="none"/>
+    
+    <!-- Cascading tender curls down shoulders -->
+    <path d="M 335,420 Q 320,480 330,540 Q 325,580 335,620" stroke="#23141a" stroke-width="12" stroke-linecap="round" fill="none"/>
+    <path d="M 465,420 Q 480,480 470,540 Q 475,580 465,620" stroke="#23141a" stroke-width="12" stroke-linecap="round" fill="none"/>
+
+    <!-- Quinceañera Tiara / Crown (Gilded Gold & Crystals) -->
+    <g id="tiara" transform="translate(350, 245)">
+      <path d="M 5,50 Q 50,38 95,50" stroke="url(#goldGrad)" stroke-width="4" fill="none"/>
+      <polygon points="50,15 42,45 58,45" fill="url(#goldGrad)"/>
+      <polygon points="28,26 22,48 36,48" fill="url(#goldGrad)"/>
+      <polygon points="72,26 64,48 78,48" fill="url(#goldGrad)"/>
+      <polygon points="12,38 8,49 18,49" fill="url(#goldGrad)"/>
+      <polygon points="88,38 82,49 92,49" fill="url(#goldGrad)"/>
+      
+      <circle cx="50" cy="15" r="4.5" fill="#ffffff" filter="url(#glowFilter)"/>
+      <circle cx="28" cy="26" r="3.5" fill="#ffd5bf"/>
+      <circle cx="72" cy="26" r="3.5" fill="#ffd5bf"/>
+      <circle cx="50" cy="38" r="3" fill="#dfb15b"/>
+      <circle cx="35" cy="42" r="2.5" fill="#fff"/>
+      <circle cx="65" cy="42" r="2.5" fill="#fff"/>
+    </g>
+
+    <!-- Face Silhouette features -->
+    <path d="M 378,380 Q 388,375 394,380" stroke="#8d5b4c" stroke-width="2" fill="none"/>
+    <path d="M 406,380 Q 412,375 422,380" stroke="#8d5b4c" stroke-width="2" fill="none"/>
+    <path d="M 380,382 Q 388,388 393,382" stroke="#4a251b" stroke-width="2.5" fill="none"/>
+    <path d="M 407,382 Q 412,388 420,382" stroke="#4a251b" stroke-width="2.5" fill="none"/>
+    <path d="M 390,422 Q 400,432 410,422" stroke="#c4586d" stroke-width="3" stroke-linecap="round" fill="none"/>
+    
+    <!-- Soft Blush -->
+    <circle cx="376" cy="402" r="12" fill="#ea7a88" opacity="0.35" filter="url(#glowFilter)"/>
+    <circle cx="424" cy="402" r="12" fill="#ea7a88" opacity="0.35" filter="url(#glowFilter)"/>
+
+    <!-- Drop Earrings -->
+    <circle cx="340" cy="410" r="3" fill="url(#goldGrad)"/>
+    <line x1="340" y1="410" x2="340" y2="425" stroke="url(#goldGrad)" stroke-width="1.5"/>
+    <circle cx="340" cy="427" r="4" fill="#ffffff" filter="url(#glowFilter)"/>
+
+    <circle cx="460" cy="410" r="3" fill="url(#goldGrad)"/>
+    <line x1="460" y1="410" x2="460" y2="425" stroke="url(#goldGrad)" stroke-width="1.5"/>
+    <circle cx="460" cy="427" r="4" fill="#ffffff" filter="url(#glowFilter)"/>
+  </g>
+
+  <!-- Ornate Foreground Arch & Filigree Vignette -->
+  <g opacity="0.4">
+    <path d="M 30,30 Q 120,40 160,110 Q 100,100 80,160 Q 60,90 30,30 Z" fill="url(#goldGrad)"/>
+    <path d="M 770,30 Q 680,40 640,110 Q 700,100 720,160 Q 740,90 770,30 Z" fill="url(#goldGrad)"/>
+  </g>
+
+  <!-- Friendly Tag Badge for easy photo replacement -->
+  <g transform="translate(400, 1030)" text-anchor="middle">
+    <rect x="-170" y="-22" width="340" height="44" rx="22" fill="#130b1c" stroke="url(#goldGrad)" stroke-width="1.5" opacity="0.88"/>
+    <text y="5" fill="#fdf4cf" font-family="'Cinzel', Georgia, serif" font-size="14" letter-spacing="2">CELEBRANT PORTRAIT</text>
+  </g>
+</svg>

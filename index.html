@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Isabella Smith — Quinceañera Invitation</title>
+
+  <!-- Google Fonts matching the reference aesthetic -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Subtle ambient background sparkle canvas -->
+  <canvas id="ambient-canvas" aria-hidden="true"></canvas>
+
+  <!-- Ambient audio toggle pill -->
+  <div class="audio-toggle-wrapper">
+    <button id="audio-toggle-btn" class="audio-btn" type="button" aria-label="Toggle background music" title="Ambient Music">
+      <span class="audio-wave">
+        <i></i><i></i><i></i><i></i>
+      </span>
+      <span class="audio-text">Music</span>
+    </button>
+  </div>
+
+  <!-- Top Navigation / Card Switcher for Desktop & Mobile -->
+  <header class="app-header">
+    <nav class="card-nav" aria-label="Invitation Navigation">
+      <button class="nav-tab active" data-target="card-cover">
+        <span class="tab-dot"></span>
+        <span class="tab-label">INVITATION</span>
+      </button>
+      <button class="nav-tab" data-target="card-program">
+        <span class="tab-dot"></span>
+        <span class="tab-label">PROGRAM</span>
+      </button>
+      <button class="nav-tab" data-target="card-rsvp">
+        <span class="tab-dot"></span>
+        <span class="tab-label">RSVP</span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Main Showcase Container -->
+  <main class="showcase-stage">
+    
+    <!-- Phone Device Shell / Frame -->
+    <div class="phone-frame">
+      <div class="phone-notch"></div>
+      <div class="phone-screen">
+
+        <!-- ══════════════════════════════════════════════════════════════
+             SCREEN 1: INVITATION COVER (CENTERPIECE PHOTO)
+        ══════════════════════════════════════════════════════════════ -->
+        <section id="card-cover" class="invitation-card card-active" aria-label="Main Invitation">
+          <div class="card-inner">
+
+            <!-- Top Gold Tiara & Filigree Flourish -->
+            <div class="top-crown-container">
+              <img src="photos/crown-flourish.svg" alt="Gold Crown Flourish" class="crown-flourish-img" />
+            </div>
+
+            <!-- Torn Paper Photo Centerpiece -->
+            <div class="torn-photo-stage">
+              <!-- Top Torn Paper Edge Overlay -->
+              <div class="torn-edge torn-top" aria-hidden="true">
+                <img src="photos/torn-top.svg" alt="" />
+              </div>
+
+              <!-- Celebrant Photo -->
+              <div class="photo-viewport">
+                <img 
+                  id="celebrant-portrait-img"
+                  src="photos/celebrant-portrait.jpg" 
+                  alt="Isabella Smith Quinceañera Portrait" 
+                  class="celebrant-photo"
+                />
+              </div>
+
+              <!-- Bottom Torn Paper Edge Overlay -->
+              <div class="torn-edge torn-bottom" aria-hidden="true">
+                <img src="photos/torn-bottom.svg" alt="" />
+              </div>
+
+              <!-- Lush Watercolor Floral Cluster overlapping bottom torn edge -->
+              <div class="floral-cluster-overlay" aria-hidden="true">
+                <img src="photos/floral-bouquet.jpg" alt="Blush Roses and Eucalyptus" class="floral-bouquet-img" />
+              </div>
+            </div>
+
+            <!-- Invitation Text & Phrasing (Exact Reference Hierarchy) -->
+            <div class="invitation-body-content">
+              
+              <p class="parents-line">VERONICA &amp; MIGUEL MARTINEZ</p>
+              
+              <p class="invite-preamble">WARMLY INVITE YOU TO CELEBRATE THE</p>
+              
+              <h1 class="quince-script-title">Quinceanera</h1>
+              
+              <p class="daughter-subtitle">OF THEIR DAUGHTER</p>
+              
+              <h2 class="celebrant-name">Isabella Smith</h2>
+
+              <!-- Classic Editorial Date & Time Box -->
+              <div class="editorial-date-box">
+                <div class="date-month">OCT</div>
+                <div class="date-middle-row">
+                  <span class="date-day-name">SATURDAY</span>
+                  <span class="date-day-num">15</span>
+                  <span class="date-time">AT 4:00 PM</span>
+                </div>
+                <div class="date-year">2025</div>
+              </div>
+
+              <!-- Venue Details Hint & Next Action -->
+              <div class="cover-footer-actions">
+                <p class="venue-location-hint">The Grand Ballroom • San Antonio, TX</p>
+                <button class="btn-card-next" data-jump="card-program" type="button">
+                  View Program Schedule &darr;
+                </button>
+              </div>
+
+            </div><!-- /.invitation-body-content -->
+
+          </div>
+        </section>
+
+        <!-- ══════════════════════════════════════════════════════════════
+             SCREEN 2: PROGRAM / TIMELINE
+        ══════════════════════════════════════════════════════════════ -->
+        <section id="card-program" class="invitation-card" aria-label="Celebration Program">
+          <div class="card-inner program-inner">
+
+            <div class="program-header">
+              <h2 class="program-title">PROGRAM</h2>
+              <div class="title-accent-line"></div>
+            </div>
+
+            <!-- Vertical Timeline Matching Reference -->
+            <div class="program-timeline">
+              
+              <!-- 2:00 PM: MASS -->
+              <div class="timeline-row row-left">
+                <div class="time-block">
+                  <span class="time-stamp">2:00PM</span>
+                  <h3 class="event-title">MASS</h3>
+                  <p class="event-desc">ST. CONCORD CHURCH,<br/>SAN ANTONIO, TX</p>
+                </div>
+                <div class="timeline-connector">
+                  <div class="timeline-line"></div>
+                  <div class="timeline-node">
+                    <svg class="tl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <!-- Church icon -->
+                      <path d="M12 2v4M10 4h4M4 11l8-6 8 6v10H4zM9 21v-6a3 3 0 016 0v6"/>
+                    </svg>
+                  </div>
+                </div>
+                <div class="timeline-empty"></div>
+              </div>
+
+              <!-- Ballgown Watercolor Illustration Moment -->
+              <div class="timeline-illustration-block">
+                <img src="photos/ballgown-illustration.jpg" alt="Blush Pink Quinceañera Ballgown" class="ballgown-img" />
+              </div>
+
+              <!-- 4:30 PM: ENTRANCE -->
+              <div class="timeline-row row-right">
+                <div class="timeline-empty"></div>
+                <div class="timeline-connector">
+                  <div class="timeline-line"></div>
+                  <div class="timeline-node">
+                    <svg class="tl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <!-- Entrance / Crown Arch -->
+                      <path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-7a3 3 0 016 0v7"/>
+                    </svg>
+                  </div>
+                </div>
+                <div class="time-block">
+                  <span class="time-stamp">4:30PM</span>
+                  <h3 class="event-title">ENTRANCE</h3>
+                  <p class="event-desc">THE GRAND BALLROOM,<br/>SAN ANTONIO, TX</p>
+                </div>
+              </div>
+
+              <!-- 5:00 PM: WALTZ -->
+              <div class="timeline-row row-left">
+                <div class="time-block">
+                  <span class="time-stamp">5:00 PM</span>
+                  <h3 class="event-title">WALTZ</h3>
+                  <p class="event-desc">FIRST DANCE &amp;<br/>FATHER-DAUGHTER WALTZ</p>
+                </div>
+                <div class="timeline-connector">
+                  <div class="timeline-line"></div>
+                  <div class="timeline-node">
+                    <svg class="tl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <!-- Dancing couple / Waltz -->
+                      <path d="M12 4a2 2 0 100-4 2 2 0 000 4zM7 9a2 2 0 100-4 2 2 0 000 4zM6 14l4 7M14 14l4 7M9 11l3-2 3 2M12 9v5"/>
+                    </svg>
+                  </div>
+                </div>
+                <div class="timeline-empty"></div>
+              </div>
+
+              <!-- 6:30 PM: DINNER -->
+              <div class="timeline-row row-right">
+                <div class="timeline-empty"></div>
+                <div class="timeline-connector">
+                  <div class="timeline-line"></div>
+                  <div class="timeline-node">
+                    <svg class="tl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <!-- Serving Platter Cloche with sparkles -->
+                      <path d="M12 5a2 2 0 012 2H10a2 2 0 012-2zM4 16h16a8 8 0 00-16 0zM2 19h20"/>
+                      <path d="M7 6l1 1M17 6l-1 1M12 3v1"/>
+                    </svg>
+                  </div>
+                </div>
+                <div class="time-block">
+                  <span class="time-stamp">6:30PM</span>
+                  <h3 class="event-title">DINNER</h3>
+                  <p class="event-desc">GOURMET CELEBRATORY<br/>DINNER SERVED</p>
+                </div>
+              </div>
+
+              <!-- 8:00 PM: PARTY -->
+              <div class="timeline-row row-left">
+                <div class="time-block">
+                  <span class="time-stamp">8:00 PM</span>
+                  <h3 class="event-title">PARTY</h3>
+                  <p class="event-desc">SURPRISE DANCE,<br/>MUSIC &amp; TOAST</p>
+                </div>
+                <div class="timeline-connector">
+                  <div class="timeline-line"></div>
+                  <div class="timeline-node">
+                    <svg class="tl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <!-- Champagne glasses toast -->
+                      <path d="M6 3l4 6v5M8 14h-4M6 14v7M18 3l-4 6v5M16 14h4M18 14v7M11 6h2"/>
+                    </svg>
+                  </div>
+                </div>
+                <div class="timeline-empty"></div>
+              </div>
+
+            </div><!-- /.program-timeline -->
+
+            <div class="program-footer">
+              <button class="btn-card-next" data-jump="card-rsvp" type="button">
+                Continue to RSVP &rarr;
+              </button>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ══════════════════════════════════════════════════════════════
+             SCREEN 3: RSVP & DETAILS
+        ══════════════════════════════════════════════════════════════ -->
+        <section id="card-rsvp" class="invitation-card" aria-label="RSVP Confirmation">
+          <div class="card-inner rsvp-inner">
+
+            <!-- Giant Floral Intertwined RSVP Letters -->
+            <div class="giant-rsvp-stage">
+              <div class="rsvp-letters-grid">
+                
+                <!-- Top Row: R and S with floral cluster -->
+                <div class="rsvp-row top-row">
+                  <div class="rsvp-char-box">
+                    <span class="rsvp-char">R</span>
+                  </div>
+                  <div class="rsvp-char-box">
+                    <span class="rsvp-char">S</span>
+                    <img src="photos/floral-bouquet.jpg" alt="" class="letter-floral floral-s" aria-hidden="true" />
+                  </div>
+                </div>
+
+                <!-- Bottom Row: V and P with floral cluster -->
+                <div class="rsvp-row bottom-row">
+                  <div class="rsvp-char-box">
+                    <span class="rsvp-char">V</span>
+                    <img src="photos/floral-bouquet.jpg" alt="" class="letter-floral floral-v" aria-hidden="true" />
+                  </div>
+                  <div class="rsvp-char-box">
+                    <span class="rsvp-char">P</span>
+                    <img src="photos/floral-bouquet.jpg" alt="" class="letter-floral floral-p" aria-hidden="true" />
+                  </div>
+                </div>
+
+              </div>
+            </div><!-- /.giant-rsvp-stage -->
+
+            <!-- Deadline Phrasing -->
+            <div class="rsvp-callout-block">
+              <p class="rsvp-deadline-text">BY OCTOBER 15</p>
+
+              <!-- Blush Ribbon Banner Button -->
+              <div class="ribbon-btn-wrapper">
+                <button id="open-rsvp-modal-btn" class="blush-ribbon-btn" type="button">
+                  <span class="ribbon-tail left"></span>
+                  <span class="ribbon-center">RSVP</span>
+                  <span class="ribbon-tail right"></span>
+                </button>
+              </div>
+
+              <p class="rsvp-instruction-text">
+                CLICK THE RSVP BUTTON AND<br/>LET US KNOW IF YOU CAN MAKE IT
+              </p>
+
+              <div class="rsvp-thank-you">
+                Thank You
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+      </div><!-- /.phone-screen -->
+    </div><!-- /.phone-frame -->
+
+  </main>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       INTERACTIVE RSVP MODAL / FORM
+  ══════════════════════════════════════════════════════════════ -->
+  <div id="rsvp-modal" class="rsvp-modal-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Confirm Attendance">
+    <div class="modal-card">
+      <button id="close-modal-btn" class="close-modal" aria-label="Close modal">&times;</button>
+      
+      <div class="modal-header">
+        <h3 class="modal-title">RSVP to Isabella's Quinceañera</h3>
+        <p class="modal-subtitle">Saturday, October 15, 2025 • San Antonio, TX</p>
+      </div>
+
+      <form id="rsvp-form" class="modal-form" novalidate>
+        
+        <div class="form-group">
+          <label for="guest-fullname">Your Full Name(s) *</label>
+          <input type="text" id="guest-fullname" name="fullname" placeholder="e.g. Veronica & Miguel Martinez" required />
+        </div>
+
+        <div class="form-group">
+          <label for="guest-email">Phone or Email *</label>
+          <input type="text" id="guest-email" name="contact" placeholder="(210) 555-0192 or email@example.com" required />
+        </div>
+
+        <div class="form-group">
+          <label for="guest-attend">Will You Be Attending? *</label>
+          <select id="guest-attend" name="attendance" required>
+            <option value="" disabled selected>Please select...</option>
+            <option value="yes">Joyfully Accept (I will be there!)</option>
+            <option value="no">Regretfully Decline (Celebrating in spirit)</option>
+          </select>
+        </div>
+
+        <div class="form-group" id="group-guests-count">
+          <label for="guest-party-size">Total Number of Guests Attending</label>
+          <select id="guest-party-size" name="partySize">
+            <option value="1">1 Guest</option>
+            <option value="2" selected>2 Guests</option>
+            <option value="3">3 Guests</option>
+            <option value="4">4 Guests</option>
+            <option value="5+">5+ Guests (Family)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="guest-notes">Warm Wishes / Song Request for Isabella</label>
+          <textarea id="guest-notes" name="notes" rows="2" placeholder="Leave a sweet note or song you want to dance to..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit-rsvp" id="btn-submit-rsvp">
+          Confirm RSVP
+        </button>
+
+        <!-- Feedback message -->
+        <div id="modal-success-alert" class="modal-success" hidden>
+          <div class="success-icon">🌸 👑 🌸</div>
+          <h4>Thank You So Much!</h4>
+          <p>Your RSVP has been saved. We cannot wait to celebrate with you!</p>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- Bottom Trackable Badge (Matching the bottom of the user's reference) -->
+  <footer class="badge-footer">
+    <div class="trackable-pill">
+      <span class="pill-bold">RSVP</span>
+      <span class="pill-script">trackable</span>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
