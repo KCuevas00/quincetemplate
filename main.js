@@ -250,24 +250,11 @@ function initAudioEngine() {
   if (!audioBtn) return;
 
   const audio = document.getElementById('bg-audio') || new Audio('music/song.m4a');
-  const START_TIME = 12; // Start at 12 seconds
-  let hasSetInitialTime = false;
   let isPlaying = false;
   let lastNonZeroVolume = 0.8;
 
   // Set default initial volume
   audio.volume = 0.8;
-
-  function ensureStartTime() {
-    if (!hasSetInitialTime) {
-      try {
-        audio.currentTime = START_TIME;
-        hasSetInitialTime = true;
-      } catch (e) { }
-    }
-  }
-
-  audio.addEventListener('loadedmetadata', ensureStartTime);
 
   function updatePlayState(playing) {
     isPlaying = playing;
@@ -301,7 +288,6 @@ function initAudioEngine() {
   }
 
   function playAudio() {
-    ensureStartTime();
     const playPromise = audio.play();
     if (playPromise !== undefined) {
       playPromise
@@ -367,10 +353,10 @@ function initAudioEngine() {
     updatePlayState(false);
   });
 
-  // When song ends, loop back directly to 12 seconds
+  // When song ends, loop back directly to the start
   audio.addEventListener('ended', () => {
     try {
-      audio.currentTime = START_TIME;
+      audio.currentTime = 0;
       audio.play().catch(() => { });
     } catch (e) {
       updatePlayState(false);
@@ -789,18 +775,45 @@ function initControlToggles() {
   const audioBar = document.getElementById('audio-control-bar');
   const audioToggle = document.getElementById('audio-collapse-toggle');
 
+  function setCollapsed(bar, btn, collapsed, hiddenLabel, shownLabel) {
+    bar.classList.toggle('collapsed', collapsed);
+    btn.setAttribute('aria-expanded', String(!collapsed));
+    btn.setAttribute('aria-label', collapsed ? shownLabel : hiddenLabel);
+  }
+
   function bindToggle(bar, btn, hiddenLabel, shownLabel) {
     if (!bar || !btn) return;
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
-      const isCollapsed = bar.classList.toggle('collapsed');
-      btn.setAttribute('aria-expanded', String(!isCollapsed));
-      btn.setAttribute('aria-label', isCollapsed ? shownLabel : hiddenLabel);
+      bar.dataset.userToggled = 'true';
+      setCollapsed(bar, btn, !bar.classList.contains('collapsed'), hiddenLabel, shownLabel);
     });
   }
 
   bindToggle(langBar, langToggle, 'Hide language selector', 'Show language selector');
   bindToggle(audioBar, audioToggle, 'Hide music player', 'Show music player');
+
+  // On narrow phones, having both bars fully expanded at once means they
+  // can collide in the middle of the screen. Default them to collapsed
+  // there so only the small arrow tabs show at first — unless the visitor
+  // has already tapped one open/closed themselves, in which case we leave
+  // their choice alone.
+  const narrowScreen = window.matchMedia('(max-width: 420px)');
+  function applyDefaultCollapse(mq) {
+    if (!mq.matches) return;
+    if (langBar && langToggle && langBar.dataset.userToggled !== 'true') {
+      setCollapsed(langBar, langToggle, true, 'Hide language selector', 'Show language selector');
+    }
+    if (audioBar && audioToggle && audioBar.dataset.userToggled !== 'true') {
+      setCollapsed(audioBar, audioToggle, true, 'Hide music player', 'Show music player');
+    }
+  }
+  applyDefaultCollapse(narrowScreen);
+  if (narrowScreen.addEventListener) {
+    narrowScreen.addEventListener('change', applyDefaultCollapse);
+  } else if (narrowScreen.addListener) {
+    narrowScreen.addListener(applyDefaultCollapse);
+  }
 }
 
 /* ═════════════════════════════════════════════════════════════════════
