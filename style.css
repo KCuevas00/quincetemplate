@@ -1292,25 +1292,25 @@ body {
   position: absolute;
   top: 15px;
   left: 50%;
-  transform: translateX(-50%) translateY(20px) scale(0.96);
+  transform: translateX(-50%) translateY(20px) translateZ(4px) scale(0.96);
   width: 335px;
   max-width: 84vw;
   background: #ffffff;
   border-radius: 8px;
   padding: 16px 18px;
-  z-index: 6;
+  z-index: 10;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.4s ease 0.2s, transform 0.9s cubic-bezier(0.18, 0.89, 0.32, 1.15), visibility 0.4s ease;
+  transition: opacity 0.35s ease 0.25s, transform 0.75s cubic-bezier(0.18, 0.89, 0.32, 1.15) 0.25s, visibility 0.35s ease 0.25s;
   pointer-events: none;
 }
 
 .luxury-envelope-container.is-opened .env-invitation-card {
   opacity: 1;
   visibility: visible;
-  transform: translateX(-50%) translateY(-115px) scale(1.02);
-  z-index: 30;
+  transform: translateX(-50%) translateY(-120px) translateZ(12px) scale(1.02);
+  z-index: 35;
   pointer-events: auto;
 }
 
@@ -1406,16 +1406,18 @@ body {
   transform-origin: top center;
   transform-style: preserve-3d;
   z-index: 15;
-  transition: transform 0.85s cubic-bezier(0.35, 1.2, 0.45, 1);
+  transition: transform 0.52s cubic-bezier(0.25, 1, 0.4, 1);
   filter: drop-shadow(0 6px 12px rgba(60, 35, 20, 0.22));
   clip-path: polygon(0 0, 100% 0, 50% 100%);
   background: linear-gradient(160deg, #caa170 0%, #bd9362 100%);
   border-top: 1px solid rgba(255, 255, 255, 0.3);
+  backface-visibility: hidden;
 }
 
 .luxury-envelope-container.is-opened .env-flap {
-  transform: rotateX(180deg);
-  z-index: 3;
+  transform: rotateX(180deg) translateZ(-6px);
+  z-index: 1;
+  filter: none;
 }
 
 /* ── LUMINOUS GLOWING WAX SEAL / STAMP ANIMATION (NO WORDS NEEDED) ── */

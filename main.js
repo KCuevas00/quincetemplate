@@ -498,10 +498,10 @@ function initEntryExperience() {
       window.playAmbientSong();
     }
 
-    // 4. Smoothly open directly to the page as requested
+    // 4. Smoothly transition to the page once the card has fully emerged and been viewed
     setTimeout(() => {
       enterWebsite();
-    }, 900);
+    }, 1250);
   }
 
   // Action: Enter the Full Website
