@@ -672,11 +672,29 @@ function initLanguageSwitcher() {
     localStorage.setItem('quince_lang', lang);
   }
 
+  const langBar = document.getElementById('lang-control-bar');
+  if (langBar) {
+    langBar.addEventListener('click', (e) => {
+      const btn = e.target.closest('.lang-pill-btn');
+      if (!btn) return;
+      const lang = btn.getAttribute('data-lang');
+      if (lang) {
+        setLanguage(lang);
+      }
+    });
+  }
+
   if (btnEn) {
-    btnEn.addEventListener('click', () => setLanguage('en'));
+    btnEn.addEventListener('click', (e) => {
+      e.preventDefault();
+      setLanguage('en');
+    });
   }
   if (btnEs) {
-    btnEs.addEventListener('click', () => setLanguage('es'));
+    btnEs.addEventListener('click', (e) => {
+      e.preventDefault();
+      setLanguage('es');
+    });
   }
 
   // Restore saved language or default to English
