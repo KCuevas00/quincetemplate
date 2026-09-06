@@ -130,6 +130,18 @@
   <!-- Subtle ambient background sparkle canvas -->
   <canvas id="ambient-canvas" aria-hidden="true"></canvas>
 
+  <!-- Floating Utility Bar: Language Switcher (Top-Left) & Music Player (Top-Right) -->
+  <div class="lang-control-bar" id="lang-control-bar" role="region" aria-label="Language Selector">
+    <div class="lang-btn-group">
+      <button type="button" class="lang-pill-btn active" id="btn-lang-en" data-lang="en" aria-label="Switch to English">
+        <span class="lang-flag">🇺🇸</span> EN
+      </button>
+      <button type="button" class="lang-pill-btn" id="btn-lang-es" data-lang="es" aria-label="Cambiar a Español">
+        <span class="lang-flag">🇲🇽</span> ES
+      </button>
+    </div>
+  </div>
+
   <!-- Floating Audio Controls (Play/Pause & Volume Slider) -->
   <div class="audio-control-bar" id="audio-control-bar" role="region" aria-label="Music Player">
     <button id="audio-toggle-btn" class="audio-btn" type="button" aria-label="Toggle background music"
@@ -156,15 +168,6 @@
     <source src="music/Fuerza%20Regida,%20Grupo%20Frontera%20-%20Bebe%20Dame%20(SPOTISAVER).mp3" type="audio/mpeg">
     <source src="music/Fuerza Regida, Grupo Frontera - Bebe Dame (SPOTISAVER).mp3" type="audio/mpeg">
   </audio>
-
-  <!-- Sleek Sticky Header Navigation -->
-  <header class="site-header">
-    <nav class="nav-container" aria-label="Page Navigation">
-      <a href="#invitation" class="nav-link active" data-i18n="nav-invitation">INVITATION</a>
-      <a href="#program" class="nav-link" data-i18n="nav-program">PROGRAM</a>
-      <a href="#rsvp" class="nav-link" data-i18n="nav-rsvp">RSVP</a>
-    </nav>
-  </header>
 
   <!-- Main Website Content Container (Enhanced with Ornate Gold Filigree Corner Accents) -->
   <main class="invitation-wrapper">
@@ -225,19 +228,6 @@
 
         <!-- Location Details -->
         <p class="venue-location-hint" data-i18n="invite-venue">THE GRAND BALLROOM • SAN ANTONIO, TX</p>
-
-        <!-- Bilingual Language Switcher -->
-        <div class="lang-switch-wrapper" aria-label="Select Language / Seleccionar Idioma">
-          <span class="lang-label" data-i18n="lang-label">LANGUAGE / IDIOMA:</span>
-          <div class="lang-btn-group">
-            <button type="button" class="lang-pill-btn active" id="btn-lang-en" data-lang="en">
-              <span class="lang-flag">🇺🇸</span> ENGLISH
-            </button>
-            <button type="button" class="lang-pill-btn" id="btn-lang-es" data-lang="es">
-              <span class="lang-flag">🇲🇽</span> ESPAÑOL
-            </button>
-          </div>
-        </div>
 
         <!-- Scroll down indicator -->
         <a href="#program" class="scroll-down-btn" aria-label="Scroll to program">

@@ -6,41 +6,12 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  initScrollNavigation();
   initRSVPModal();
   initAmbientCanvas();
   initAudioEngine();
   initEntryExperience();
   initLanguageSwitcher();
 });
-
-/* ═════════════════════════════════════════════════════════════════════
-   1. SMOOTH SCROLL NAVIGATION & ACTIVE SECTION HIGHLIGHTING
-   ═════════════════════════════════════════════════════════════════════ */
-function initScrollNavigation() {
-  const navLinks = document.querySelectorAll('.nav-link');
-  const sections = document.querySelectorAll('.invite-section');
-
-  window.addEventListener('scroll', () => {
-    let current = '';
-    const scrollPos = window.pageYOffset + 140;
-
-    sections.forEach(section => {
-      const top = section.offsetTop;
-      const height = section.offsetHeight;
-      if (scrollPos >= top && scrollPos < top + height) {
-        current = section.getAttribute('id');
-      }
-    });
-
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === `#${current}`) {
-        link.classList.add('active');
-      }
-    });
-  });
-}
 
 /* ═════════════════════════════════════════════════════════════════════
    2. INTERACTIVE RSVP MODAL & CONFETTI CELEBRATION

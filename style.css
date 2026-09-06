@@ -233,59 +233,69 @@ body {
   cursor: pointer;
 }
 
-/* ── STICKY TOP NAVIGATION ── */
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 90;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  padding: 0.8rem 1rem;
-  background: rgba(251, 245, 242, 0.85);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(211, 149, 133, 0.2);
-}
-
-.nav-container {
-  display: flex;
+/* ── FLOATING LANGUAGE CONTROL BAR (TOP-LEFT) ── */
+.lang-control-bar {
+  position: fixed;
+  top: 1.2rem;
+  left: 1.5rem;
+  z-index: 100;
+  display: inline-flex;
   align-items: center;
-  gap: 1.8rem;
-}
-
-.nav-link {
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  text-decoration: none;
-  position: relative;
-  padding: 0.2rem 0;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(200, 134, 118, 0.35);
+  border-radius: 999px;
+  padding: 4px 6px;
+  box-shadow: 0 4px 18px rgba(178, 115, 99, 0.16);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   transition: var(--transition-smooth);
 }
 
-.nav-link:hover,
-.nav-link.active {
+.lang-control-bar:hover {
+  background: #ffffff;
+  box-shadow: 0 6px 22px rgba(178, 115, 99, 0.22);
+}
+
+.lang-control-bar .lang-btn-group {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  box-shadow: none;
+}
+
+.lang-control-bar .lang-pill-btn {
+  border: none;
+  background: transparent;
+  padding: 0.32rem 0.72rem;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--text-subtle);
+  border-radius: 999px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.2s ease;
+}
+
+.lang-control-bar .lang-pill-btn:hover {
   color: var(--text-dark);
 }
 
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 2px;
-  background: var(--rose-gold);
-  transition: var(--transition-smooth);
+.lang-control-bar .lang-pill-btn.active {
+  background: linear-gradient(135deg, #c88676, #b27363);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(178, 115, 99, 0.35);
 }
 
-.nav-link:hover::after,
-.nav-link.active::after {
-  width: 100%;
+.lang-flag {
+  font-size: 0.85rem;
+  line-height: 1;
 }
 
 /* ── MAIN INVITATION CARD CONTAINER ── */
@@ -293,7 +303,7 @@ body {
   position: relative;
   width: 100%;
   max-width: 520px;
-  margin: 1.5rem auto 3rem;
+  margin: 3.6rem auto 3rem;
   background-color: var(--card-white);
   background-image: 
     radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.95) 0%, rgba(253, 248, 245, 0.7) 100%),
@@ -385,61 +395,6 @@ body {
 .corner-top-right { top: 12px; right: 12px; transform: scaleX(-1); }
 .corner-bottom-left { bottom: 12px; left: 12px; transform: scaleY(-1); }
 .corner-bottom-right { bottom: 12px; right: 12px; transform: scale(-1); }
-
-/* Bilingual Language Buttons */
-.lang-switch-wrapper {
-  margin: 1.2rem auto 0.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.4rem;
-}
-.lang-label {
-  font-family: var(--font-sans);
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  color: var(--text-muted);
-  text-transform: uppercase;
-}
-.lang-btn-group {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: rgba(255, 255, 255, 0.85);
-  border: 1px solid rgba(196, 158, 88, 0.3);
-  border-radius: 999px;
-  padding: 3px 4px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-}
-.lang-pill-btn {
-  border: none;
-  background: transparent;
-  padding: 0.35rem 0.9rem;
-  font-family: var(--font-sans);
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  color: var(--text-subtle);
-  border-radius: 999px;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  transition: all 0.25s ease;
-}
-.lang-pill-btn:hover {
-  color: var(--text-dark);
-  background: rgba(247, 216, 206, 0.35);
-}
-.lang-pill-btn.active {
-  background: linear-gradient(135deg, #c88676, #b27363);
-  color: #ffffff;
-  box-shadow: 0 2px 8px rgba(178, 115, 99, 0.35);
-}
-.lang-flag {
-  font-size: 0.85rem;
-}
 
 .invite-section {
   position: relative;
@@ -1658,6 +1613,52 @@ body {
     left: -25px;
     width: 180px;
     height: 180px;
+  }
+
+  /* Mobile Floating Utility Controls (Language Left, Music Right) */
+  .lang-control-bar {
+    top: 0.75rem;
+    left: 0.75rem;
+    padding: 2px 4px;
+  }
+  .lang-control-bar .lang-pill-btn {
+    padding: 0.25rem 0.52rem;
+    font-size: 0.68rem;
+  }
+  .audio-control-bar {
+    top: 0.75rem;
+    right: 0.75rem;
+    padding: 3px 6px 3px 4px;
+    gap: 0.25rem;
+  }
+  .audio-text {
+    display: none; /* Ultra-clean compact audio pill on mobile */
+  }
+  .audio-volume-panel {
+    padding-left: 0.25rem;
+  }
+  .volume-slider {
+    width: 44px;
+  }
+
+  /* Mobile Invitation Card & Hero Photo Centerpiece Focus */
+  .invitation-wrapper {
+    margin: 3.2rem auto 2rem;
+    width: calc(100% - 20px);
+    border-radius: 20px;
+  }
+  .cover-section {
+    padding-top: 1.5rem;
+    padding-bottom: 2rem;
+  }
+  .photo-stage {
+    margin: 0.6rem auto 1.5rem;
+  }
+  .quince-script-title {
+    font-size: 3.5rem;
+  }
+  .celebrant-name {
+    font-size: 1.75rem;
   }
 }
 
