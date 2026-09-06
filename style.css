@@ -5,24 +5,26 @@
 
 /* ── DESIGN SYSTEM VARIABLES ── */
 :root {
-  /* Soft Blush & Warm Ivory */
-  --bg-page: #fbf5f2;
-  --bg-page-gradient: radial-gradient(circle at 50% 15%, #fff6f2 0%, #fae6e0 60%, #eedcd6 100%);
+  /* Warm Kraft, Ivory Linen, Peach & Blush Scheme (Exact Match to Reference) */
+  --bg-page: #f8f5ee;
+  --bg-page-gradient: radial-gradient(circle at 50% 15%, #ffffff 0%, #f6f1e8 60%, #ece4d6 100%);
   --card-white: #ffffff;
-  
-  /* Text Colors */
-  --text-dark: #1a1a1a;
-  --text-charcoal: #2c2c2c;
-  --text-subtle: #555555;
-  --text-muted: #777777;
 
-  /* Rose Gold & Blush Accents */
-  --rose-gold: #d39585;
-  --rose-gold-dark: #b27363;
-  --rose-gold-light: #f7d8ce;
-  --ribbon-blush: #f4d3c9;
-  --ribbon-blush-hover: #edd6ce;
-  --gold-accent: #c49e58;
+  /* Text Colors */
+  --text-dark: #271f1b;
+  --text-charcoal: #3c322d;
+  --text-subtle: #61534b;
+  --text-muted: #88786f;
+
+  /* Kraft Camel, Peach & Rose Gold Accents */
+  --kraft-camel: #c89e6c;
+  --kraft-camel-dark: #a97e4e;
+  --rose-gold: #c88676;
+  --rose-gold-dark: #ab6a5b;
+  --rose-gold-light: #f5ddd6;
+  --ribbon-blush: #eac5bc;
+  --ribbon-blush-hover: #e2b7ad;
+  --gold-accent: #c49658;
 
   /* Typography Families */
   --font-script: 'Alex Brush', cursive;
@@ -35,7 +37,9 @@
 }
 
 /* ── RESET & BASE ── */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -112,14 +116,32 @@ body {
   transition: height 0.2s ease;
 }
 
-.audio-btn.playing .audio-wave i:nth-child(1) { animation: soundWave 1.1s infinite ease-in-out 0.1s; }
-.audio-btn.playing .audio-wave i:nth-child(2) { animation: soundWave 1.1s infinite ease-in-out 0.3s; }
-.audio-btn.playing .audio-wave i:nth-child(3) { animation: soundWave 1.1s infinite ease-in-out 0.2s; }
-.audio-btn.playing .audio-wave i:nth-child(4) { animation: soundWave 1.1s infinite ease-in-out 0.4s; }
+.audio-btn.playing .audio-wave i:nth-child(1) {
+  animation: soundWave 1.1s infinite ease-in-out 0.1s;
+}
+
+.audio-btn.playing .audio-wave i:nth-child(2) {
+  animation: soundWave 1.1s infinite ease-in-out 0.3s;
+}
+
+.audio-btn.playing .audio-wave i:nth-child(3) {
+  animation: soundWave 1.1s infinite ease-in-out 0.2s;
+}
+
+.audio-btn.playing .audio-wave i:nth-child(4) {
+  animation: soundWave 1.1s infinite ease-in-out 0.4s;
+}
 
 @keyframes soundWave {
-  0%, 100% { height: 3px; }
-  50% { height: 14px; }
+
+  0%,
+  100% {
+    height: 3px;
+  }
+
+  50% {
+    height: 14px;
+  }
 }
 
 .audio-text {
@@ -188,16 +210,92 @@ body {
 /* ── MAIN INVITATION CARD CONTAINER ── */
 .invitation-wrapper {
   position: relative;
-  z-index: 5;
   width: 100%;
-  max-width: 580px;
+  max-width: 520px;
   margin: 1.5rem auto 3rem;
-  background: var(--card-white);
+  background-color: var(--card-white);
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.95) 0%, rgba(253, 248, 245, 0.7) 100%),
+    url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0 L40 20 L20 40 L0 20 Z' fill='none' stroke='%23d9bba8' stroke-width='0.4' stroke-opacity='0.2'/%3E%3Ccircle cx='20' cy='20' r='1.5' fill='%23c8a060' fill-opacity='0.18'/%3E%3C/svg%3E");
+  border: 1px solid rgba(196, 158, 88, 0.28);
   border-radius: 24px;
   box-shadow: 
     0 25px 70px rgba(180, 115, 99, 0.14),
-    0 4px 20px rgba(0, 0, 0, 0.04);
+    0 4px 20px rgba(0, 0, 0, 0.04),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.9),
+    inset 0 0 35px rgba(247, 216, 206, 0.22);
   overflow: hidden;
+}
+
+/* Ornate Gold Filigree Corner Accents */
+.corner-filigree {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  pointer-events: none;
+  z-index: 10;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 48 48' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 4 C14 4 22 12 22 22 M4 4 C4 14 12 22 22 22 M4 4 L14 14 M4 4 L4 28 M4 4 L28 4 M8 8 C16 8 20 12 20 20 M8 8 C8 16 12 20 20 20' fill='none' stroke='%23c49e58' stroke-width='1.4' stroke-linecap='round' stroke-opacity='0.85'/%3E%3Ccircle cx='10' cy='10' r='1.5' fill='%23c49e58'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.corner-top-left { top: 12px; left: 12px; }
+.corner-top-right { top: 12px; right: 12px; transform: scaleX(-1); }
+.corner-bottom-left { bottom: 12px; left: 12px; transform: scaleY(-1); }
+.corner-bottom-right { bottom: 12px; right: 12px; transform: scale(-1); }
+
+/* Bilingual Language Buttons */
+.lang-switch-wrapper {
+  margin: 1.2rem auto 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+.lang-label {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+.lang-btn-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(196, 158, 88, 0.3);
+  border-radius: 999px;
+  padding: 3px 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+.lang-pill-btn {
+  border: none;
+  background: transparent;
+  padding: 0.35rem 0.9rem;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--text-subtle);
+  border-radius: 999px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.25s ease;
+}
+.lang-pill-btn:hover {
+  color: var(--text-dark);
+  background: rgba(247, 216, 206, 0.35);
+}
+.lang-pill-btn.active {
+  background: linear-gradient(135deg, #c88676, #b27363);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(178, 115, 99, 0.35);
+}
+.lang-flag {
+  font-size: 0.85rem;
 }
 
 .invite-section {
@@ -964,3 +1062,435 @@ body {
     gap: 1.2rem;
   }
 }
+
+/* ═════════════════════════════════════════════════════════════════════
+   BESPOKE LUXURY ENVELOPE ENTRY POPUP STYLES (EXACT REFERENCE MATCH)
+   ═════════════════════════════════════════════════════════════════════ */
+.entry-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: #f7f4ec;
+  background-image: 
+    radial-gradient(circle at 50% 45%, #ffffff 0%, #f7f3eb 55%, #ece5d8 100%);
+  transition: opacity 0.85s cubic-bezier(0.2, 0.9, 0.3, 1), transform 0.85s cubic-bezier(0.2, 0.9, 0.3, 1), visibility 0.85s;
+}
+
+.entry-overlay.fade-out {
+  opacity: 0;
+  transform: scale(1.05);
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.entry-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 15;
+}
+
+.entry-stage-mount {
+  position: relative;
+  z-index: 10;
+  perspective: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 1.5rem;
+  width: 100%;
+  max-width: 500px;
+}
+
+/* Diagonal Corner Floral Sprays Framing the Envelope (Overlapping in Front) */
+.envelope-floral-frame {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 420px;
+  height: 290px;
+  max-width: 95vw;
+  pointer-events: none;
+  z-index: 25; /* Overlap in front of envelope */
+}
+
+.envelope-flower-spray {
+  position: absolute;
+  object-fit: contain;
+  pointer-events: none;
+  filter: drop-shadow(0 12px 24px rgba(70, 45, 30, 0.16));
+}
+
+.flower-top-right {
+  top: -55px;
+  right: -48px;
+  width: 275px;
+  height: 275px;
+  z-index: 25;
+}
+
+.flower-bottom-left {
+  bottom: -55px;
+  left: -48px;
+  width: 275px;
+  height: 275px;
+  z-index: 25;
+}
+
+/* 3D Envelope Container (Natural Golden Kraft Paper) */
+.luxury-envelope-container {
+  position: relative;
+  width: 370px;
+  height: 250px;
+  max-width: 88vw;
+  cursor: pointer;
+  user-select: none;
+  transform-style: preserve-3d;
+  border-radius: 4px;
+  background: #c89e6c;
+  box-shadow: 
+    0 25px 50px rgba(90, 60, 45, 0.22),
+    0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 10;
+}
+
+.luxury-envelope-container:hover {
+  transform: translateY(-4px) scale(1.015);
+  box-shadow: 
+    0 30px 60px rgba(90, 60, 45, 0.26),
+    0 10px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* Envelope Interior Back Wall */
+.env-back {
+  position: absolute;
+  inset: 0;
+  background: #be9463;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: inset 0 0 35px rgba(80, 50, 30, 0.25);
+}
+
+.env-interior-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.08) 0, rgba(255, 255, 255, 0.08) 1px, transparent 0, transparent 20px),
+    repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.08) 0, rgba(255, 255, 255, 0.08) 1px, transparent 0, transparent 20px);
+}
+
+/* Inside Invitation Card (STRICTLY HIDDEN WHEN CLOSED, Glides Up Upon Opening) */
+.env-invitation-card {
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px) scale(0.96);
+  width: 335px;
+  max-width: 84vw;
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 16px 18px;
+  z-index: 6;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease 0.2s, transform 0.9s cubic-bezier(0.18, 0.89, 0.32, 1.15), visibility 0.4s ease;
+  pointer-events: none;
+}
+
+.luxury-envelope-container.is-opened .env-invitation-card {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(-115px) scale(1.02);
+  z-index: 30;
+  pointer-events: auto;
+}
+
+.card-gold-frame {
+  border: 1px solid rgba(196, 158, 88, 0.35);
+  border-radius: 6px;
+  padding: 14px 12px 16px;
+  text-align: center;
+  background: radial-gradient(circle at 50% 10%, rgba(255, 255, 255, 1) 0%, rgba(253, 248, 245, 0.85) 100%);
+}
+
+.card-crown-flourish {
+  color: var(--gold-accent);
+  margin-bottom: 4px;
+}
+
+.card-pretitle {
+  font-family: var(--font-sans);
+  font-size: 0.58rem;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.card-quince-script {
+  font-family: var(--font-script);
+  font-size: 2.2rem;
+  line-height: 1.05;
+  color: var(--rose-gold);
+}
+
+.card-celebrant-name {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+}
+
+.card-portrait-ring {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 8px;
+  border-radius: 50%;
+  border: 2px solid var(--gold-accent);
+  box-shadow: 0 4px 12px rgba(189, 120, 107, 0.25);
+  overflow: hidden;
+}
+
+.card-portrait-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-date-badge {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--text-charcoal);
+  margin-bottom: 2px;
+}
+
+.card-venue-sub {
+  font-family: var(--font-sans);
+  font-size: 0.58rem;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+}
+
+.btn-enter-invitation {
+  background: linear-gradient(135deg, #c88676, #ab6a5b);
+  color: #ffffff;
+  border: none;
+  border-radius: 999px;
+  padding: 7px 18px;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(178, 115, 99, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-enter-invitation:hover {
+  transform: scale(1.04);
+  box-shadow: 0 6px 18px rgba(178, 115, 99, 0.45);
+}
+
+/* Envelope Front Pocket (Kraft Camel Warm Paper with Diagonal Seams) */
+.env-pocket {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 195px;
+  background: linear-gradient(175deg, #caa170 0%, #be9463 60%, #b28857 100%);
+  border-radius: 0 0 4px 4px;
+  z-index: 12;
+  overflow: hidden;
+  box-shadow: 0 -3px 12px rgba(60, 35, 20, 0.12);
+}
+
+/* Subtle Realistic Seam Lines on Kraft Envelope */
+.env-pocket::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, transparent 48%),
+    linear-gradient(-135deg, rgba(0, 0, 0, 0.08) 0%, transparent 48%);
+  pointer-events: none;
+}
+
+/* Envelope 3D Triangular Top Flap (Clean Kraft Paper, No Text) */
+.env-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 145px;
+  transform-origin: top center;
+  transform-style: preserve-3d;
+  z-index: 15;
+  transition: transform 0.85s cubic-bezier(0.35, 1.2, 0.45, 1);
+  filter: drop-shadow(0 6px 10px rgba(60, 35, 20, 0.2));
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  background: linear-gradient(160deg, #caa170 0%, #bd9362 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.luxury-envelope-container.is-opened .env-flap {
+  transform: rotateX(180deg);
+  z-index: 3;
+}
+
+/* Soft Pearlescent Blush Wax Seal at the Tip of the Flap */
+.env-wax-seal-wrapper {
+  position: absolute;
+  top: 110px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 22;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.luxury-envelope-container.is-opened .env-wax-seal-wrapper {
+  opacity: 0;
+  transform: translateX(-50%) scale(0.65);
+  pointer-events: none;
+}
+
+.seal-glow-halo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 86px;
+  height: 86px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(232, 194, 183, 0.45) 0%, rgba(232, 194, 183, 0) 70%);
+  filter: blur(6px);
+  animation: sealHaloPulse 2.4s infinite ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes sealHaloPulse {
+  0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(0.95); }
+  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.15); }
+}
+
+.wax-seal-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.wax-seal-btn:hover {
+  transform: scale(1.08);
+}
+
+.wax-seal-btn:active {
+  transform: scale(0.94);
+}
+
+/* Clean, Minimal "CLICK TO OPEN" (Exact Match to Reference) */
+.env-click-prompt {
+  margin-top: 36px;
+  cursor: pointer;
+  user-select: none;
+  text-align: center;
+  animation: promptFade 2.5s infinite ease-in-out;
+}
+
+@keyframes promptFade {
+  0%, 100% { opacity: 0.65; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(2px); }
+}
+
+.click-prompt-text {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.26em;
+  color: #8c7365;
+  text-transform: uppercase;
+}
+
+/* Direct Skip Button */
+.entry-direct-skip {
+  position: absolute;
+  bottom: 20px;
+  background: transparent;
+  border: none;
+  color: rgba(120, 95, 80, 0.55);
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  z-index: 20;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.entry-direct-skip:hover {
+  color: #4a362c;
+  transform: translateY(2px);
+}
+
+@media (max-width: 480px) {
+  .envelope-floral-frame {
+    width: 360px;
+    height: 280px;
+  }
+  .flower-top-right {
+    top: -45px;
+    right: -35px;
+    width: 190px;
+    height: 190px;
+  }
+  .flower-bottom-left {
+    bottom: -45px;
+    left: -35px;
+    width: 190px;
+    height: 190px;
+  }
+  .luxury-envelope-container {
+    width: 320px;
+    height: 220px;
+  }
+  .env-pocket {
+    height: 160px;
+  }
+  .env-flap {
+    height: 120px;
+  }
+  .env-flap-calligraphy {
+    font-size: 1.8rem;
+    top: 18px;
+  }
+  .env-wax-seal-wrapper {
+    top: 90px;
+  }
+}
+

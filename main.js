@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initRSVPModal();
   initAmbientCanvas();
   initAudioEngine();
+  initEntryExperience();
+  initLanguageSwitcher();
 });
 
 /* ═════════════════════════════════════════════════════════════════════
@@ -241,79 +243,404 @@ function initAmbientCanvas() {
 }
 
 /* ═════════════════════════════════════════════════════════════════════
-   5. AMBIENT AUDIO CONTROLLER (GENTLE WALTZ HARP SYNTHESIS)
+   5. AMBIENT AUDIO CONTROLLER (BEBE DAME - FUERZA REGIDA & GRUPO FRONTERA)
    ═════════════════════════════════════════════════════════════════════ */
 function initAudioEngine() {
   const audioBtn = document.getElementById('audio-toggle-btn');
   if (!audioBtn) return;
 
-  let audioCtx = null;
+  const audio = document.getElementById('bg-audio') || new Audio('music/Fuerza Regida, Grupo Frontera - Bebe Dame (SPOTISAVER).mp3');
+  const START_TIME = 12; // Start at 12 seconds
+  let hasSetInitialTime = false;
+
+  function ensureStartTime() {
+    if (!hasSetInitialTime) {
+      try {
+        audio.currentTime = START_TIME;
+        hasSetInitialTime = true;
+      } catch (e) {}
+    }
+  }
+
+  audio.addEventListener('loadedmetadata', ensureStartTime);
+
   let isPlaying = false;
-  let sequenceTimer = null;
 
-  // Gentle acoustic harp waltz chords (F major / D minor progression)
-  const notes = [
-    349.23, 440.00, 523.25, 698.46, 523.25, 440.00,
-    392.00, 493.88, 587.33, 783.99, 587.33, 493.88,
-    329.63, 392.00, 493.88, 659.25, 493.88, 392.00,
-    440.00, 523.25, 659.25, 880.00, 659.25, 523.25
-  ];
-  let noteIndex = 0;
-
-  function getCtx() {
-    if (!audioCtx) {
-      const AudioContext = window.AudioContext || window.webkitAudioContext;
-      audioCtx = new AudioContext();
+  function playAudio() {
+    ensureStartTime();
+    const playPromise = audio.play();
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => {
+          isPlaying = true;
+          audioBtn.classList.add('playing');
+        })
+        .catch(err => {
+          console.warn('Audio play prevented or interrupted:', err);
+        });
     }
-    if (audioCtx.state === 'suspended') {
-      audioCtx.resume();
-    }
-    return audioCtx;
   }
 
-  function playNote(freq) {
-    if (!isPlaying) return;
-    const ctx = getCtx();
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-
-    osc.type = 'triangle';
-    osc.frequency.setValueAtTime(freq, ctx.currentTime);
-
-    gain.gain.setValueAtTime(0.001, ctx.currentTime);
-    gain.gain.linearRampToValueAtTime(0.06, ctx.currentTime + 0.02);
-    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 1.4);
-
-    osc.connect(gain);
-    gain.connect(ctx.destination);
-
-    osc.start(ctx.currentTime);
-    osc.stop(ctx.currentTime + 1.5);
-  }
-
-  function startMusic() {
-    isPlaying = true;
-    audioBtn.classList.add('playing');
-    function loop() {
-      if (!isPlaying) return;
-      playNote(notes[noteIndex]);
-      noteIndex = (noteIndex + 1) % notes.length;
-      sequenceTimer = setTimeout(loop, 450);
-    }
-    loop();
-  }
-
-  function stopMusic() {
+  function pauseAudio() {
+    audio.pause();
     isPlaying = false;
-    clearTimeout(sequenceTimer);
     audioBtn.classList.remove('playing');
   }
 
-  audioBtn.addEventListener('click', () => {
+  audioBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
     if (isPlaying) {
-      stopMusic();
+      pauseAudio();
     } else {
-      startMusic();
+      playAudio();
     }
   });
+
+  audio.addEventListener('play', () => {
+    isPlaying = true;
+    audioBtn.classList.add('playing');
+  });
+
+  audio.addEventListener('pause', () => {
+    isPlaying = false;
+    audioBtn.classList.remove('playing');
+  });
+
+  // When song ends, loop back directly to 12 seconds
+  audio.addEventListener('ended', () => {
+    try {
+      audio.currentTime = START_TIME;
+      audio.play().catch(() => {});
+    } catch (e) {
+      isPlaying = false;
+      audioBtn.classList.remove('playing');
+    }
+  });
+
+  // Expose global starter for when envelope opens
+  window.playAmbientSong = () => {
+    if (!isPlaying) {
+      playAudio();
+    }
+  };
 }
+
+/* ═════════════════════════════════════════════════════════════════════
+   6. ARTISANAL ENVELOPE ENTRY CONTROLLER & SAKURA CASCADE
+   ═════════════════════════════════════════════════════════════════════ */
+function initEntryExperience() {
+  const overlay = document.getElementById('entry-popup-overlay');
+  const envelope = document.getElementById('luxury-envelope');
+  const sealTrigger = document.getElementById('wax-seal-trigger');
+  const enterCardBtn = document.getElementById('btn-enter-invitation');
+  const directSkipBtn = document.getElementById('entry-direct-skip-btn');
+
+  if (!overlay || !envelope) return;
+
+  // Falling Cherry Blossom Petal Engine
+  class SakuraCascadeEngine {
+    constructor(canvasId) {
+      this.canvas = document.getElementById(canvasId);
+      if (!this.canvas) return;
+      this.ctx = this.canvas.getContext('2d');
+      this.particles = [];
+      this.active = false; // NOTE: petals are strictly INACTIVE until invitation is opened!
+      this.resize();
+      window.addEventListener('resize', () => this.resize());
+    }
+
+    resize() {
+      this.width = this.canvas.width = window.innerWidth;
+      this.height = this.canvas.height = window.innerHeight;
+    }
+
+    createPetal(initialY = -25) {
+      return {
+        x: Math.random() * this.width,
+        y: initialY,
+        size: Math.random() * 9 + 6,
+        speedY: Math.random() * 1.6 + 0.9,
+        speedX: Math.random() * 0.8 - 0.4,
+        rotation: Math.random() * Math.PI * 2,
+        rotSpeed: (Math.random() - 0.5) * 0.04,
+        swayAngle: Math.random() * Math.PI * 2,
+        swaySpeed: Math.random() * 0.03 + 0.015,
+        color: Math.random() > 0.4 ? (Math.random() > 0.5 ? 'rgba(252, 206, 185, 0.9)' : 'rgba(247, 185, 198, 0.85)') : 'rgba(255, 238, 228, 0.92)',
+        flipSpeed: Math.random() * 0.03 + 0.015,
+        flip: Math.random() * Math.PI
+      };
+    }
+
+    // Called the moment the guest taps the wax seal
+    start() {
+      if (this.active) return;
+      this.active = true;
+
+      // Seed initial gentle stream
+      const count = window.innerWidth < 600 ? 30 : 55;
+      for (let i = 0; i < count; i++) {
+        this.particles.push(this.createPetal(Math.random() * -this.height * 0.8));
+      }
+
+      this.animate();
+    }
+
+    // Celebratory burst radiating from the broken seal
+    burst(count = 65) {
+      const originX = this.width / 2;
+      const originY = this.height * 0.45;
+
+      for (let i = 0; i < count; i++) {
+        const p = this.createPetal(originY);
+        p.x = originX;
+        const angle = Math.random() * Math.PI * 2;
+        const speed = Math.random() * 8 + 3;
+        p.speedX = Math.cos(angle) * speed;
+        p.speedY = Math.sin(angle) * speed - 3;
+        this.particles.push(p);
+      }
+    }
+
+    animate() {
+      if (!this.active) return;
+      this.ctx.clearRect(0, 0, this.width, this.height);
+
+      for (let i = this.particles.length - 1; i >= 0; i--) {
+        const p = this.particles[i];
+
+        p.y += p.speedY;
+        p.swayAngle += p.swaySpeed;
+        p.x += Math.sin(p.swayAngle) * 0.75 + p.speedX;
+        p.rotation += p.rotSpeed;
+        p.flip += p.flipSpeed;
+
+        this.ctx.save();
+        this.ctx.translate(p.x, p.y);
+        this.ctx.rotate(p.rotation);
+        this.ctx.scale(1, Math.cos(p.flip));
+
+        this.ctx.fillStyle = p.color;
+        this.ctx.beginPath();
+        this.ctx.ellipse(0, 0, p.size * 0.55, p.size * 0.85, 0, 0, Math.PI * 2);
+        this.ctx.shadowBlur = 6;
+        this.ctx.shadowColor = 'rgba(235, 180, 160, 0.4)';
+        this.ctx.fill();
+
+        this.ctx.restore();
+
+        // Reset once off-screen
+        if (p.y > this.height + 25) {
+          this.particles[i] = this.createPetal(-20);
+        }
+      }
+
+      requestAnimationFrame(() => this.animate());
+    }
+  }
+
+  const sakuraCascade = new SakuraCascadeEngine('entry-canvas');
+
+  // Action: Open the Envelope
+  let isEnvelopeOpen = false;
+
+  function openEnvelope() {
+    if (isEnvelopeOpen) return;
+    isEnvelopeOpen = true;
+
+    // 1. Trigger Envelope 3D Fold & Card Rise
+    envelope.classList.add('is-opened');
+
+    // 2. Start petals strictly on opening
+    sakuraCascade.start();
+    sakuraCascade.burst(65);
+
+    // 3. Start song "Bebe Dame" starting at 12s
+    if (typeof window.playAmbientSong === 'function') {
+      window.playAmbientSong();
+    }
+
+    // 4. Smoothly open directly to the page as requested
+    setTimeout(() => {
+      enterWebsite();
+    }, 900);
+  }
+
+  // Action: Enter the Full Website
+  function enterWebsite() {
+    overlay.classList.add('fade-out');
+
+    if (typeof window.playAmbientSong === 'function') {
+      window.playAmbientSong();
+    }
+
+    setTimeout(() => {
+      overlay.style.display = 'none';
+      if (sakuraCascade) sakuraCascade.active = false;
+    }, 850);
+  }
+
+  // Bind Interactions
+  envelope.addEventListener('click', () => {
+    if (!isEnvelopeOpen) {
+      openEnvelope();
+    }
+  });
+
+  if (sealTrigger) {
+    sealTrigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openEnvelope();
+    });
+  }
+
+  if (enterCardBtn) {
+    enterCardBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      enterWebsite();
+    });
+  }
+
+  if (directSkipBtn) {
+    directSkipBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      enterWebsite();
+    });
+  }
+}
+
+/* ═════════════════════════════════════════════════════════════════════
+   7. BILINGUAL LANGUAGE CONTROLLER (ENGLISH / ESPAÑOL)
+   ═════════════════════════════════════════════════════════════════════ */
+function initLanguageSwitcher() {
+  const btnEn = document.getElementById('btn-lang-en');
+  const btnEs = document.getElementById('btn-lang-es');
+
+  const translations = {
+    en: {
+      'seal-hint': 'TAP SEAL TO OPEN',
+      'skip-link': 'Skip to invitation ↓',
+      'audio-music': 'Music',
+      'nav-invitation': 'INVITATION',
+      'nav-program': 'PROGRAM',
+      'nav-rsvp': 'RSVP',
+      'invite-parents': 'VERONICA & MIGUEL MARTINEZ',
+      'invite-preamble': 'WARMLY INVITE YOU TO CELEBRATE THE',
+      'invite-quince': 'Quinceañera',
+      'invite-daughter': 'OF THEIR DAUGHTER',
+      'invite-date-month': 'OCT',
+      'invite-date-day': 'SATURDAY',
+      'invite-date-time': 'AT 4:00 PM',
+      'invite-date-short': 'OCT 15, 2025',
+      'invite-venue': 'THE GRAND BALLROOM • SAN ANTONIO, TX',
+      'btn-open-card': 'Open Invitation →',
+      'lang-label': 'LANGUAGE / IDIOMA:',
+      'program-title': 'PROGRAM',
+      'program-mass-title': 'MASS',
+      'program-mass-desc': 'ST. CONCORD CHURCH,<br/>SAN ANTONIO, TX',
+      'program-entrance-title': 'ENTRANCE',
+      'program-entrance-desc': 'THE GRAND BALLROOM,<br/>SAN ANTONIO, TX',
+      'program-waltz-title': 'WALTZ',
+      'program-waltz-desc': 'FIRST DANCE &amp;<br/>FATHER-DAUGHTER WALTZ',
+      'program-dinner-title': 'DINNER',
+      'program-dinner-desc': 'GOURMET CELEBRATORY<br/>DINNER SERVED',
+      'program-party-title': 'PARTY',
+      'program-party-desc': 'SURPRISE DANCE,<br/>MUSIC &amp; TOAST',
+      'rsvp-deadline': 'BY OCTOBER 15',
+      'rsvp-instruction': 'CLICK THE RSVP BUTTON AND<br/>LET US KNOW IF YOU CAN MAKE IT',
+      'rsvp-thankyou': 'Thank You',
+      'modal-title': 'RSVP to Isabella\'s Quinceañera',
+      'modal-subtitle': 'Saturday, October 15, 2025 • San Antonio, TX',
+      'label-fullname': 'Your Full Name(s) *',
+      'label-email': 'Phone or Email *',
+      'label-attend': 'Will You Be Attending? *',
+      'opt-select': 'Please select...',
+      'opt-yes': 'Joyfully Accept (I will be there!)',
+      'opt-no': 'Regretfully Decline (Celebrating in spirit)',
+      'label-party': 'Total Number of Guests Attending',
+      'label-notes': 'Warm Wishes / Song Request for Isabella',
+      'btn-submit': 'Confirm RSVP',
+      'modal-success-title': 'Thank You So Much!',
+      'modal-success-desc': 'Your RSVP has been saved. We cannot wait to celebrate with you!'
+    },
+    es: {
+      'seal-hint': 'TOCA EL SELLO PARA ABRIR',
+      'skip-link': 'Saltar a la invitación ↓',
+      'audio-music': 'Música',
+      'nav-invitation': 'INVITACIÓN',
+      'nav-program': 'PROGRAMA',
+      'nav-rsvp': 'CONFIRMAR',
+      'invite-parents': 'VERÓNICA Y MIGUEL MARTÍNEZ',
+      'invite-preamble': 'TIENEN EL HONOR DE INVITARLE A CELEBRAR LOS',
+      'invite-quince': 'Quince Años',
+      'invite-daughter': 'DE SU QUERIDA HIJA',
+      'invite-date-month': 'OCT',
+      'invite-date-day': 'SÁBADO',
+      'invite-date-time': 'A LAS 4:00 PM',
+      'invite-date-short': '15 OCT, 2025',
+      'invite-venue': 'THE GRAND BALLROOM • SAN ANTONIO, TX',
+      'btn-open-card': 'Abrir Invitación →',
+      'lang-label': 'IDIOMA / LANGUAGE:',
+      'program-title': 'PROGRAMA',
+      'program-mass-title': 'MISA DE ACCIÓN DE GRACIAS',
+      'program-mass-desc': 'IGLESIA SAN CONCORDIA,<br/>SAN ANTONIO, TX',
+      'program-entrance-title': 'RECEPCIÓN Y ENTRADA',
+      'program-entrance-desc': 'THE GRAND BALLROOM,<br/>SAN ANTONIO, TX',
+      'program-waltz-title': 'VALS DE HONOR',
+      'program-waltz-desc': 'PRIMER BAILE Y<br/>VALS CON SU PADRE',
+      'program-dinner-title': 'CENA DE GALA',
+      'program-dinner-desc': 'CENA GOURMET Y<br/>BRINDIS EN SU HONOR',
+      'program-party-title': 'FIESTA Y BAILE',
+      'program-party-desc': 'BAILE SORPRESA,<br/>MÚSICA Y CELEBRACIÓN',
+      'rsvp-deadline': 'ANTES DEL 15 DE OCTUBRE',
+      'rsvp-instruction': 'HAGA CLIC EN EL BOTÓN Y<br/>CONFIRME SU ASISTENCIA',
+      'rsvp-thankyou': 'Muchas Gracias',
+      'modal-title': 'Confirmar Asistencia - Quinceañera de Isabella',
+      'modal-subtitle': 'Sábado, 15 de Octubre, 2025 • San Antonio, TX',
+      'label-fullname': 'Nombre y Apellido(s) *',
+      'label-email': 'Teléfono o Correo Electrónico *',
+      'label-attend': '¿Asistirás a la Celebración? *',
+      'opt-select': 'Por favor seleccione...',
+      'opt-yes': 'Acepto con Alegría (¡Allí estaré!)',
+      'opt-no': 'Declinó con Tristeza (Acompaño en espíritu)',
+      'label-party': 'Número Total de Asistentes',
+      'label-notes': 'Felicitaciones o Petición de Canción',
+      'btn-submit': 'Confirmar Asistencia',
+      'modal-success-title': '¡Muchas Gracias!',
+      'modal-success-desc': 'Su confirmación ha sido guardada. ¡Esperamos celebrar juntos este gran día!'
+    }
+  };
+
+  function setLanguage(lang) {
+    const dict = translations[lang] || translations.en;
+    document.documentElement.lang = lang;
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (dict[key]) {
+        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+          el.placeholder = dict[key];
+        } else {
+          el.innerHTML = dict[key];
+        }
+      }
+    });
+
+    if (btnEn) btnEn.classList.toggle('active', lang === 'en');
+    if (btnEs) btnEs.classList.toggle('active', lang === 'es');
+    localStorage.setItem('quince_lang', lang);
+  }
+
+  if (btnEn) {
+    btnEn.addEventListener('click', () => setLanguage('en'));
+  }
+  if (btnEs) {
+    btnEs.addEventListener('click', () => setLanguage('es'));
+  }
+
+  // Restore saved language or default to English
+  const savedLang = localStorage.getItem('quince_lang') || 'en';
+  if (savedLang !== 'en') {
+    setLanguage(savedLang);
+  }
+}
+
