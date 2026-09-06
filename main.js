@@ -571,6 +571,13 @@ function initLanguageSwitcher() {
       'cd-hours': 'HOURS',
       'cd-mins': 'MINUTES',
       'cd-secs': 'SECONDS',
+      'cd-showcase-tag': '5 ALTERNATIVE DESIGNS BELOW',
+      'cd-showcase-hint': 'Scroll down to compare different visual treatments crafted to pop on the page:',
+      'cd-v1-name': 'Royal Midnight Velvet &amp; Rose Gold Plaque',
+      'cd-v2-name': 'Gilded Baroque Cathedral Arch &amp; Pedestals',
+      'cd-v3-name': 'Luminous Frosted Glass &amp; Warm Candlelit Aura',
+      'cd-v4-name': 'Porcelain &amp; Double-Gold Locket Medallions',
+      'cd-v5-name': 'Couture Blush &amp; Gold Satin Ribbon Sash',
       'lang-label': 'LANGUAGE / IDIOMA:',
       'program-title': 'PROGRAM',
       'program-mass-title': 'MASS',
@@ -623,6 +630,13 @@ function initLanguageSwitcher() {
       'cd-hours': 'HORAS',
       'cd-mins': 'MINUTOS',
       'cd-secs': 'SEGUNDOS',
+      'cd-showcase-tag': '5 DISEÑOS ALTERNATIVOS ABAJO',
+      'cd-showcase-hint': 'Desplázate hacia abajo para comparar las diferentes opciones visuales:',
+      'cd-v1-name': 'Placa de Terciopelo Medianoche y Oro Rosa',
+      'cd-v2-name': 'Arco Catedralicio Barroco Dorado y Pedestales',
+      'cd-v3-name': 'Cristal Esmerilado Luminoso y Aura Cálida',
+      'cd-v4-name': 'Medallones Circulares de Porcelana y Oro Doble',
+      'cd-v5-name': 'Banda de Satén Alta Costura en Rosa y Oro',
       'lang-label': 'IDIOMA / LANGUAGE:',
       'program-title': 'PROGRAMA',
       'program-mass-title': 'MISA DE ACCIÓN DE GRACIAS',
@@ -711,12 +725,12 @@ function initLanguageSwitcher() {
    8. QUINCEAÑERA LIVE COUNTDOWN CONTROLLER
    ═════════════════════════════════════════════════════════════════════ */
 function initCountdown() {
-  const elDays = document.getElementById('cd-days');
-  const elHours = document.getElementById('cd-hours');
-  const elMins = document.getElementById('cd-mins');
-  const elSecs = document.getElementById('cd-secs');
+  const allDays = document.querySelectorAll('.cd-val-days');
+  const allHours = document.querySelectorAll('.cd-val-hours');
+  const allMins = document.querySelectorAll('.cd-val-mins');
+  const allSecs = document.querySelectorAll('.cd-val-secs');
 
-  if (!elDays || !elHours || !elMins || !elSecs) return;
+  if (!allDays.length && !document.getElementById('cd-days')) return;
 
   // Target date for Isabella's Quinceañera: October 15 at 2:00 PM (Ceremony Start)
   const now = new Date();
@@ -732,23 +746,24 @@ function initCountdown() {
     const currentTime = new Date().getTime();
     const distance = target.getTime() - currentTime;
 
-    if (distance <= 0) {
-      elDays.textContent = '00';
-      elHours.textContent = '00';
-      elMins.textContent = '00';
-      elSecs.textContent = '00';
-      return;
+    let strDays = '00', strHours = '00', strMins = '00', strSecs = '00';
+
+    if (distance > 0) {
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      strDays = String(days).padStart(2, '0');
+      strHours = String(hours).padStart(2, '0');
+      strMins = String(minutes).padStart(2, '0');
+      strSecs = String(seconds).padStart(2, '0');
     }
 
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    elDays.textContent = String(days).padStart(2, '0');
-    elHours.textContent = String(hours).padStart(2, '0');
-    elMins.textContent = String(minutes).padStart(2, '0');
-    elSecs.textContent = String(seconds).padStart(2, '0');
+    allDays.forEach(el => el.textContent = strDays);
+    allHours.forEach(el => el.textContent = strHours);
+    allMins.forEach(el => el.textContent = strMins);
+    allSecs.forEach(el => el.textContent = strSecs);
   }
 
   updateCountdown();

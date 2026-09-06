@@ -216,8 +216,8 @@
           <div class="date-year">2025</div>
         </div>
 
-        <!-- Bespoke Luxury Countdown Block -->
-        <div class="invitation-countdown-block" role="timer" aria-label="Countdown to Quinceañera">
+        <!-- Bespoke Luxury Countdown Block (Current Design) -->
+        <div class="invitation-countdown-block" role="timer" aria-label="Countdown to Quinceañera (Current Design)">
           <div class="countdown-heading-wrap">
             <span class="countdown-accent-fleuron" aria-hidden="true">✦ &nbsp; ❦ &nbsp; ✦</span>
             <h3 class="countdown-caption" data-i18n="countdown-title">COUNTING DOWN TO THE BIG DAY</h3>
@@ -226,7 +226,7 @@
           <div class="countdown-grid">
             <!-- Days -->
             <div class="countdown-card">
-              <div class="countdown-num" id="cd-days">00</div>
+              <div class="countdown-num cd-val-days" id="cd-days">00</div>
               <div class="countdown-label" data-i18n="cd-days">DAYS</div>
             </div>
 
@@ -234,7 +234,7 @@
 
             <!-- Hours -->
             <div class="countdown-card">
-              <div class="countdown-num" id="cd-hours">00</div>
+              <div class="countdown-num cd-val-hours" id="cd-hours">00</div>
               <div class="countdown-label" data-i18n="cd-hours">HOURS</div>
             </div>
 
@@ -242,7 +242,7 @@
 
             <!-- Minutes -->
             <div class="countdown-card">
-              <div class="countdown-num" id="cd-mins">00</div>
+              <div class="countdown-num cd-val-mins" id="cd-mins">00</div>
               <div class="countdown-label" data-i18n="cd-mins">MINUTES</div>
             </div>
 
@@ -250,11 +250,253 @@
 
             <!-- Seconds -->
             <div class="countdown-card">
-              <div class="countdown-num" id="cd-secs">00</div>
+              <div class="countdown-num cd-val-secs" id="cd-secs">00</div>
               <div class="countdown-label" data-i18n="cd-secs">SECONDS</div>
             </div>
           </div>
         </div>
+
+        <!-- ══════════════════════════════════════════════════════════════
+             5 COUNTDOWN DESIGN VARIATIONS (EXPLORATION SHOWCASE)
+        ══════════════════════════════════════════════════════════════ -->
+        <div class="cd-variations-container" role="region" aria-label="Countdown Design Variations">
+          
+          <div class="cd-variations-intro">
+            <div class="cd-showcase-badge">
+              <span class="badge-sparkle">✦</span>
+              <span data-i18n="cd-showcase-tag">5 ALTERNATIVE DESIGNS BELOW</span>
+              <span class="badge-sparkle">✦</span>
+            </div>
+            <p class="cd-showcase-hint" data-i18n="cd-showcase-hint">Scroll down to compare different visual treatments crafted to pop on the page:</p>
+          </div>
+
+          <!-- ── DESIGN 1: Royal Midnight & Rose Gold Velvet ── -->
+          <div class="cd-variation-item" id="cd-var-1">
+            <div class="cd-var-label-bar">
+              <span class="cd-var-num">OPTION 1</span>
+              <span class="cd-var-name" data-i18n="cd-v1-name">Royal Midnight Velvet &amp; Rose Gold Plaque</span>
+            </div>
+            <div class="cd-theme-midnight" role="timer" aria-label="Countdown Variation 1">
+              <div class="midnight-inner">
+                <div class="midnight-header">
+                  <span class="midnight-crown">👑</span>
+                  <span class="midnight-title" data-i18n="countdown-title">COUNTING DOWN TO THE BIG DAY</span>
+                  <span class="midnight-stars">✦ ✦ ✦</span>
+                </div>
+                <div class="midnight-grid">
+                  <div class="midnight-cell">
+                    <span class="midnight-num cd-val-days">00</span>
+                    <span class="midnight-label" data-i18n="cd-days">DAYS</span>
+                  </div>
+                  <span class="midnight-sep">:</span>
+                  <div class="midnight-cell">
+                    <span class="midnight-num cd-val-hours">00</span>
+                    <span class="midnight-label" data-i18n="cd-hours">HOURS</span>
+                  </div>
+                  <span class="midnight-sep">:</span>
+                  <div class="midnight-cell">
+                    <span class="midnight-num cd-val-mins">00</span>
+                    <span class="midnight-label" data-i18n="cd-mins">MINUTES</span>
+                  </div>
+                  <span class="midnight-sep">:</span>
+                  <div class="midnight-cell">
+                    <span class="midnight-num cd-val-secs">00</span>
+                    <span class="midnight-label" data-i18n="cd-secs">SECONDS</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── DESIGN 2: Gilded Baroque Arch & Pedestals ── -->
+          <div class="cd-variation-item" id="cd-var-2">
+            <div class="cd-var-label-bar">
+              <span class="cd-var-num">OPTION 2</span>
+              <span class="cd-var-name" data-i18n="cd-v2-name">Gilded Baroque Cathedral Arch &amp; Pedestals</span>
+            </div>
+            <div class="cd-theme-arch" role="timer" aria-label="Countdown Variation 2">
+              <div class="arch-frame">
+                <div class="arch-crest">
+                  <svg class="crest-svg" viewBox="0 0 40 24" fill="none" stroke="currentColor">
+                    <path d="M20 2C12 2 8 8 2 12M20 2c8 0 12 6 18 10M20 2v10M14 12c2 4 4 6 6 6s4-2 6-6" stroke-width="1.6" stroke-linecap="round"/>
+                  </svg>
+                  <span class="arch-title" data-i18n="countdown-title">COUNTING DOWN TO THE BIG DAY</span>
+                </div>
+                <div class="arch-pedestals">
+                  <div class="arch-col">
+                    <div class="arch-pedestal-box">
+                      <span class="arch-num cd-val-days">00</span>
+                    </div>
+                    <span class="arch-label" data-i18n="cd-days">DAYS</span>
+                  </div>
+                  <span class="arch-colon">❦</span>
+                  <div class="arch-col">
+                    <div class="arch-pedestal-box">
+                      <span class="arch-num cd-val-hours">00</span>
+                    </div>
+                    <span class="arch-label" data-i18n="cd-hours">HOURS</span>
+                  </div>
+                  <span class="arch-colon">❦</span>
+                  <div class="arch-col">
+                    <div class="arch-pedestal-box">
+                      <span class="arch-num cd-val-mins">00</span>
+                    </div>
+                    <span class="arch-label" data-i18n="cd-mins">MINUTES</span>
+                  </div>
+                  <span class="arch-colon">❦</span>
+                  <div class="arch-col">
+                    <div class="arch-pedestal-box">
+                      <span class="arch-num cd-val-secs">00</span>
+                    </div>
+                    <span class="arch-label" data-i18n="cd-secs">SECONDS</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── DESIGN 3: Ethereal Frosted Glass & Illuminated Aura ── -->
+          <div class="cd-variation-item" id="cd-var-3">
+            <div class="cd-var-label-bar">
+              <span class="cd-var-num">OPTION 3</span>
+              <span class="cd-var-name" data-i18n="cd-v3-name">Luminous Frosted Glass &amp; Warm Candlelit Aura</span>
+            </div>
+            <div class="cd-theme-glass" role="timer" aria-label="Countdown Variation 3">
+              <div class="glass-ambient-halo"></div>
+              <div class="glass-body">
+                <div class="glass-header">
+                  <span class="glass-star">✦</span>
+                  <h4 class="glass-title" data-i18n="countdown-title">COUNTING DOWN TO THE BIG DAY</h4>
+                  <span class="glass-star">✦</span>
+                </div>
+                <div class="glass-grid">
+                  <div class="glass-capsule">
+                    <span class="glass-num cd-val-days">00</span>
+                    <span class="glass-pill-label" data-i18n="cd-days">DAYS</span>
+                  </div>
+                  <span class="glass-divider">•</span>
+                  <div class="glass-capsule">
+                    <span class="glass-num cd-val-hours">00</span>
+                    <span class="glass-pill-label" data-i18n="cd-hours">HOURS</span>
+                  </div>
+                  <span class="glass-divider">•</span>
+                  <div class="glass-capsule">
+                    <span class="glass-num cd-val-mins">00</span>
+                    <span class="glass-pill-label" data-i18n="cd-mins">MINUTES</span>
+                  </div>
+                  <span class="glass-divider">•</span>
+                  <div class="glass-capsule">
+                    <span class="glass-num cd-val-secs">00</span>
+                    <span class="glass-pill-label" data-i18n="cd-secs">SECONDS</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── DESIGN 4: Porcelain & Gold Medallion Circles ── -->
+          <div class="cd-variation-item" id="cd-var-4">
+            <div class="cd-var-label-bar">
+              <span class="cd-var-num">OPTION 4</span>
+              <span class="cd-var-name" data-i18n="cd-v4-name">Porcelain &amp; Double-Gold Locket Medallions</span>
+            </div>
+            <div class="cd-theme-medallion" role="timer" aria-label="Countdown Variation 4">
+              <div class="medallion-header">
+                <span class="medallion-laurel">❧</span>
+                <span class="medallion-title" data-i18n="countdown-title">COUNTING DOWN TO THE BIG DAY</span>
+                <span class="medallion-laurel">☙</span>
+              </div>
+              <div class="medallions-row">
+                <div class="medallion-item">
+                  <div class="medallion-circle">
+                    <div class="circle-inner-ring">
+                      <span class="circle-num cd-val-days">00</span>
+                    </div>
+                  </div>
+                  <span class="circle-caption" data-i18n="cd-days">DAYS</span>
+                </div>
+
+                <div class="medallion-chain">✦</div>
+
+                <div class="medallion-item">
+                  <div class="medallion-circle">
+                    <div class="circle-inner-ring">
+                      <span class="circle-num cd-val-hours">00</span>
+                    </div>
+                  </div>
+                  <span class="circle-caption" data-i18n="cd-hours">HOURS</span>
+                </div>
+
+                <div class="medallion-chain">✦</div>
+
+                <div class="medallion-item">
+                  <div class="medallion-circle">
+                    <div class="circle-inner-ring">
+                      <span class="circle-num cd-val-mins">00</span>
+                    </div>
+                  </div>
+                  <span class="circle-caption" data-i18n="cd-mins">MINUTES</span>
+                </div>
+
+                <div class="medallion-chain">✦</div>
+
+                <div class="medallion-item">
+                  <div class="medallion-circle">
+                    <div class="circle-inner-ring">
+                      <span class="circle-num cd-val-secs">00</span>
+                    </div>
+                  </div>
+                  <span class="circle-caption" data-i18n="cd-secs">SECONDS</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── DESIGN 5: Couture Blush Satin Ribbon Sash ── -->
+          <div class="cd-variation-item" id="cd-var-5">
+            <div class="cd-var-label-bar">
+              <span class="cd-var-num">OPTION 5</span>
+              <span class="cd-var-name" data-i18n="cd-v5-name">Couture Blush &amp; Gold Satin Ribbon Sash</span>
+            </div>
+            <div class="cd-theme-sash" role="timer" aria-label="Countdown Variation 5">
+              <div class="sash-banner">
+                <div class="sash-swallowtail left"></div>
+                <div class="sash-main">
+                  <div class="sash-gold-trim top"></div>
+                  <div class="sash-crest-row">
+                    <span class="sash-mini-seal">✦ 15 ✦</span>
+                    <span class="sash-title" data-i18n="countdown-title">COUNTING DOWN TO THE BIG DAY</span>
+                    <span class="sash-mini-seal">✦ 15 ✦</span>
+                  </div>
+                  <div class="sash-tickets-grid">
+                    <div class="sash-ticket">
+                      <span class="ticket-num cd-val-days">00</span>
+                      <span class="ticket-lbl" data-i18n="cd-days">DAYS</span>
+                    </div>
+                    <span class="sash-dot">◆</span>
+                    <div class="sash-ticket">
+                      <span class="ticket-num cd-val-hours">00</span>
+                      <span class="ticket-lbl" data-i18n="cd-hours">HOURS</span>
+                    </div>
+                    <span class="sash-dot">◆</span>
+                    <div class="sash-ticket">
+                      <span class="ticket-num cd-val-mins">00</span>
+                      <span class="ticket-lbl" data-i18n="cd-mins">MINUTES</span>
+                    </div>
+                    <span class="sash-dot">◆</span>
+                    <div class="sash-ticket">
+                      <span class="ticket-num cd-val-secs">00</span>
+                      <span class="ticket-lbl" data-i18n="cd-secs">SECONDS</span>
+                    </div>
+                  </div>
+                  <div class="sash-gold-trim bottom"></div>
+                </div>
+                <div class="sash-swallowtail right"></div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /.cd-variations-container -->
 
         <!-- Location Details -->
         <p class="venue-location-hint" data-i18n="invite-venue">THE GRAND BALLROOM • SAN ANTONIO, TX</p>
