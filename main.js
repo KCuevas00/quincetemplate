@@ -373,7 +373,6 @@ function initEntryExperience() {
   const overlay = document.getElementById('entry-popup-overlay');
   const envelope = document.getElementById('luxury-envelope');
   const sealTrigger = document.getElementById('wax-seal-trigger');
-  const enterCardBtn = document.getElementById('btn-enter-invitation');
 
   if (!overlay || !envelope) return;
 
@@ -532,13 +531,6 @@ function initEntryExperience() {
       openEnvelope();
     });
   }
-
-  if (enterCardBtn) {
-    enterCardBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      enterWebsite();
-    });
-  }
 }
 
 /* ═════════════════════════════════════════════════════════════════════
@@ -563,7 +555,6 @@ function initLanguageSwitcher() {
       'invite-date-time': 'AT 4:00 PM',
       'invite-date-short': 'OCT 15, 2025',
       'invite-venue': 'THE GRAND BALLROOM • SAN ANTONIO, TX',
-      'btn-open-card': 'Open Invitation →',
       'lang-label': 'LANGUAGE / IDIOMA:',
       'program-title': 'PROGRAM',
       'program-mass-title': 'MASS',
@@ -607,7 +598,6 @@ function initLanguageSwitcher() {
       'invite-date-time': 'A LAS 4:00 PM',
       'invite-date-short': '15 OCT, 2025',
       'invite-venue': 'THE GRAND BALLROOM • SAN ANTONIO, TX',
-      'btn-open-card': 'Abrir Invitación →',
       'lang-label': 'IDIOMA / LANGUAGE:',
       'program-title': 'PROGRAMA',
       'program-mass-title': 'MISA DE ACCIÓN DE GRACIAS',
