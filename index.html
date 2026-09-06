@@ -22,9 +22,6 @@
        BESPOKE ENVELOPE ENTRY POPUP
   ══════════════════════════════════════════════════════════════ -->
   <div id="entry-popup-overlay" class="entry-overlay" role="dialog" aria-modal="true" aria-label="Quinceañera Entrance Invitation">
-    <!-- Falling cherry blossom canvas: begins falling ONLY once the envelope is opened -->
-    <canvas id="entry-canvas" class="entry-canvas" aria-hidden="true"></canvas>
-
     <div class="entry-stage-mount">
       <!-- Luxury Floral Corner Sprays Framing Envelope Diagonally (Overlapping in Front) -->
       <div class="envelope-floral-frame">
@@ -120,6 +117,9 @@
 
   <!-- Subtle ambient background sparkle canvas -->
   <canvas id="ambient-canvas" aria-hidden="true"></canvas>
+
+  <!-- Falling cherry blossom petals: begins strictly on envelope open and continues falling over invitation -->
+  <canvas id="entry-canvas" class="entry-canvas" aria-hidden="true"></canvas>
 
   <!-- Floating Utility Bar: Language Switcher (Top-Left) & Music Player (Top-Right) -->
   <div class="lang-control-bar" id="lang-control-bar" role="region" aria-label="Language Selector">

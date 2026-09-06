@@ -467,9 +467,14 @@ function initEntryExperience() {
 
         this.ctx.restore();
 
-        // Reset once off-screen
+        // Reset once off-screen: maintain perpetual cascade over celebration photo
         if (p.y > this.height + 25) {
-          this.particles[i] = this.createPetal(-20);
+          const maxOngoing = this.width < 600 ? 32 : 48;
+          if (this.particles.length > maxOngoing) {
+            this.particles.splice(i, 1);
+          } else {
+            this.particles[i] = this.createPetal(-20);
+          }
         }
       }
 
@@ -506,6 +511,7 @@ function initEntryExperience() {
 
   // Action: Enter the Full Website
   function enterWebsite() {
+    document.body.classList.add('site-entered');
     overlay.classList.add('fade-out');
 
     if (typeof window.playAmbientSong === 'function') {
@@ -514,7 +520,7 @@ function initEntryExperience() {
 
     setTimeout(() => {
       overlay.style.display = 'none';
-      if (sakuraCascade) sakuraCascade.active = false;
+      // Sakura petals remain continuously falling over the invitation letter and Isabella's photo
     }, 850);
   }
 
