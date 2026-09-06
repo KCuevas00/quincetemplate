@@ -61,6 +61,13 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Prevent accidental scrolling while envelope is closed */
+body:not(.site-entered) {
+  overflow: hidden !important;
+  height: 100vh !important;
+  touch-action: none;
+}
+
 /* Background bokeh sparkle canvas */
 #ambient-canvas {
   position: fixed;

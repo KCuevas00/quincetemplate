@@ -6,6 +6,12 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Prevent browser from restoring a previous scroll position
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+  window.scrollTo(0, 0);
+
   initRSVPModal();
   initAmbientCanvas();
   initAudioEngine();
@@ -493,6 +499,11 @@ function initEntryExperience() {
     if (isEnvelopeOpen) return;
     isEnvelopeOpen = true;
 
+    // Force page to the top immediately when the envelope is opened
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+
     // 1. Trigger Envelope 3D Fold & Card Rise
     envelope.classList.add('is-opened');
 
@@ -513,6 +524,11 @@ function initEntryExperience() {
 
   // Action: Enter the Full Website
   function enterWebsite() {
+    // Ensure page is pinned strictly to the top upon entering
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+
     document.body.classList.add('site-entered');
     overlay.classList.add('fade-out');
 
@@ -522,6 +538,10 @@ function initEntryExperience() {
 
     setTimeout(() => {
       overlay.style.display = 'none';
+      // Force once more after overlay is removed to be 100% sure
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
       // Sakura petals remain continuously falling over the invitation letter and Isabella's photo
     }, 850);
   }
