@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initEntryExperience();
   initLanguageSwitcher();
   initCountdown();
+  initMapLinks();
 });
 
 /* ═════════════════════════════════════════════════════════════════════
@@ -576,6 +577,7 @@ function initLanguageSwitcher() {
       'program-mass-desc': 'ST. CONCORD CHURCH,<br/>SAN ANTONIO, TX',
       'program-entrance-title': 'ENTRANCE',
       'program-entrance-desc': 'THE GRAND BALLROOM,<br/>SAN ANTONIO, TX',
+      'tl-btn-location': 'Location',
       'program-waltz-title': 'WALTZ',
       'program-waltz-desc': 'FIRST DANCE &amp;<br/>FATHER-DAUGHTER WALTZ',
       'program-dinner-title': 'DINNER',
@@ -627,6 +629,7 @@ function initLanguageSwitcher() {
       'program-mass-desc': 'IGLESIA SAN CONCORDIA,<br/>SAN ANTONIO, TX',
       'program-entrance-title': 'RECEPCIÓN Y ENTRADA',
       'program-entrance-desc': 'THE GRAND BALLROOM,<br/>SAN ANTONIO, TX',
+      'tl-btn-location': 'Ubicación',
       'program-waltz-title': 'VALS DE HONOR',
       'program-waltz-desc': 'PRIMER BAILE Y<br/>VALS CON SU PADRE',
       'program-dinner-title': 'CENA DE GALA',
@@ -750,5 +753,18 @@ function initCountdown() {
 
   updateCountdown();
   setInterval(updateCountdown, 1000);
+}
+
+/* ═════════════════════════════════════════════════════════════════════
+   9. DEVICE-AWARE MAP DIRECTIONS
+   ═════════════════════════════════════════════════════════════════════ */
+function initMapLinks() {
+  const isApple = /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent) && !window.MSStream;
+  if (isApple) {
+    document.querySelectorAll('.timeline-loc-btn[data-apple-url]').forEach(btn => {
+      const appleUrl = btn.getAttribute('data-apple-url');
+      if (appleUrl) btn.setAttribute('href', appleUrl);
+    });
+  }
 }
 
