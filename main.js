@@ -600,7 +600,7 @@ function initLanguageSwitcher() {
       'invite-date-day': 'SATURDAY',
       'invite-date-time': 'AT 4:00 PM',
       'invite-date-short': 'JUL 17, 2027',
-      'invite-venue': 'THE GRAND BALLROOM • SAN ANTONIO, TX',
+      'invite-venue': 'THE GRAND BALLROOM • CHICAGO, IL',
       'loc-ceremony-type': 'CEREMONY • 2:00 PM',
       'loc-ceremony-name': 'St. Concord Church',
       'loc-reception-type': 'RECEPTION • 4:30 PM',
@@ -613,9 +613,9 @@ function initLanguageSwitcher() {
       'lang-label': 'LANGUAGE / IDIOMA:',
       'program-title': 'PROGRAM',
       'program-mass-title': 'MASS',
-      'program-mass-desc': 'ST. CONCORD CHURCH,<br/>SAN ANTONIO, TX',
+      'program-mass-desc': 'ST. CONCORD CHURCH,<br/>CHICAGO, IL',
       'program-entrance-title': 'ENTRANCE',
-      'program-entrance-desc': 'THE GRAND BALLROOM,<br/>SAN ANTONIO, TX',
+      'program-entrance-desc': 'THE GRAND BALLROOM,<br/>CHICAGO, IL',
       'tl-btn-location': 'Location',
       'program-waltz-title': 'WALTZ',
       'program-waltz-desc': 'FIRST DANCE &amp;<br/>FATHER-DAUGHTER WALTZ',
@@ -636,7 +636,7 @@ function initLanguageSwitcher() {
       'rsvp-instruction': 'CLICK THE RSVP BUTTON AND<br/>LET US KNOW IF YOU CAN MAKE IT',
       'rsvp-thankyou': 'Thank You',
       'modal-title': 'RSVP to Valeria\'s Quinceañera',
-      'modal-subtitle': 'Saturday, July 17, 2027 • San Antonio, TX',
+      'modal-subtitle': 'Saturday, July 17, 2027 • Chicago, IL',
       'label-fullname': 'Your Full Name(s) *',
       'label-email': 'Phone or Email *',
       'label-attend': 'Will You Be Attending? *',
@@ -661,7 +661,7 @@ function initLanguageSwitcher() {
       'invite-date-day': 'SÁBADO',
       'invite-date-time': 'A LAS 4:00 PM',
       'invite-date-short': '17 JUL, 2027',
-      'invite-venue': 'THE GRAND BALLROOM • SAN ANTONIO, TX',
+      'invite-venue': 'THE GRAND BALLROOM • CHICAGO, IL',
       'loc-ceremony-type': 'CEREMONIA • 2:00 PM',
       'loc-ceremony-name': 'Iglesia St. Concord',
       'loc-reception-type': 'RECEPCIÓN • 4:30 PM',
@@ -674,9 +674,9 @@ function initLanguageSwitcher() {
       'lang-label': 'IDIOMA / LANGUAGE:',
       'program-title': 'PROGRAMA',
       'program-mass-title': 'MISA DE ACCIÓN DE GRACIAS',
-      'program-mass-desc': 'IGLESIA SAN CONCORDIA,<br/>SAN ANTONIO, TX',
+      'program-mass-desc': 'IGLESIA SAN CONCORDIA,<br/>CHICAGO, IL',
       'program-entrance-title': 'RECEPCIÓN Y ENTRADA',
-      'program-entrance-desc': 'THE GRAND BALLROOM,<br/>SAN ANTONIO, TX',
+      'program-entrance-desc': 'THE GRAND BALLROOM,<br/>CHICAGO, IL',
       'tl-btn-location': 'Ubicación',
       'program-waltz-title': 'VALS DE HONOR',
       'program-waltz-desc': 'PRIMER BAILE Y<br/>VALS CON SU PADRE',
@@ -697,7 +697,7 @@ function initLanguageSwitcher() {
       'rsvp-instruction': 'HAGA CLIC EN EL BOTÓN Y<br/>CONFIRME SU ASISTENCIA',
       'rsvp-thankyou': 'Muchas Gracias',
       'modal-title': 'Confirmar Asistencia - Quinceañera de Valeria',
-      'modal-subtitle': 'Sábado, 17 de Julio, 2027 • San Antonio, TX',
+      'modal-subtitle': 'Sábado, 17 de Julio, 2027 • Chicago, IL',
       'label-fullname': 'Nombre y Apellido(s) *',
       'label-email': 'Teléfono o Correo Electrónico *',
       'label-attend': '¿Asistirás a la Celebración? *',
@@ -793,26 +793,16 @@ function initControlToggles() {
   bindToggle(langBar, langToggle, 'Hide language selector', 'Show language selector');
   bindToggle(audioBar, audioToggle, 'Hide music player', 'Show music player');
 
-  // On narrow phones, having both bars fully expanded at once means they
-  // can collide in the middle of the screen. Default them to collapsed
-  // there so only the small arrow tabs show at first — unless the visitor
-  // has already tapped one open/closed themselves, in which case we leave
-  // their choice alone.
-  const narrowScreen = window.matchMedia('(max-width: 420px)');
-  function applyDefaultCollapse(mq) {
-    if (!mq.matches) return;
-    if (langBar && langToggle && langBar.dataset.userToggled !== 'true') {
-      setCollapsed(langBar, langToggle, true, 'Hide language selector', 'Show language selector');
-    }
-    if (audioBar && audioToggle && audioBar.dataset.userToggled !== 'true') {
-      setCollapsed(audioBar, audioToggle, true, 'Hide music player', 'Show music player');
-    }
+  // Having both bars fully expanded at once can make them collide/overlap
+  // in the middle of the screen, especially on phones. Start both
+  // collapsed to just the small arrow tab on every screen size — unless
+  // the visitor has already tapped one open/closed themselves, in which
+  // case we leave their choice alone.
+  if (langBar && langToggle && langBar.dataset.userToggled !== 'true') {
+    setCollapsed(langBar, langToggle, true, 'Hide language selector', 'Show language selector');
   }
-  applyDefaultCollapse(narrowScreen);
-  if (narrowScreen.addEventListener) {
-    narrowScreen.addEventListener('change', applyDefaultCollapse);
-  } else if (narrowScreen.addListener) {
-    narrowScreen.addListener(applyDefaultCollapse);
+  if (audioBar && audioToggle && audioBar.dataset.userToggled !== 'true') {
+    setCollapsed(audioBar, audioToggle, true, 'Hide music player', 'Show music player');
   }
 }
 

@@ -77,8 +77,8 @@ body:not(.site-entered) {
 #ambient-canvas {
   position: fixed;
   inset: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
   z-index: 0;
   opacity: 0.6;
@@ -223,12 +223,11 @@ body.site-entered .audio-control-bar {
 .volume-slider {
   -webkit-appearance: none;
   appearance: none;
-  width: 72px;
-  height: 28px;
+  width: 80px;
+  height: 40px;
   background: transparent;
   outline: none;
   cursor: pointer;
-  touch-action: manipulation;
 }
 
 .volume-slider::-webkit-slider-runnable-track {
@@ -246,9 +245,9 @@ body.site-entered .audio-control-bar {
 .volume-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 20px;
-  height: 20px;
-  margin-top: -8px;
+  width: 22px;
+  height: 22px;
+  margin-top: -9px;
   border-radius: 50%;
   background: var(--rose-gold);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
@@ -261,8 +260,8 @@ body.site-entered .audio-control-bar {
 }
 
 .volume-slider::-moz-range-thumb {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   border: none;
   border-radius: 50%;
   background: var(--rose-gold);
@@ -1845,8 +1844,8 @@ body.site-entered .lang-control-bar {
 .entry-canvas {
   position: fixed;
   inset: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
   z-index: 1050;
 }
@@ -2359,6 +2358,59 @@ body.site-entered .lang-control-bar {
   .timeline-loc-btn {
     padding: 0.2rem 0.48rem;
     font-size: 0.56rem;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Tighter countdown sizing so it never spills past the edge of narrow phones */
+  .pure-countdown-section {
+    padding: 0 0.25rem;
+  }
+
+  .pt-numbers-row {
+    gap: 0.3rem;
+  }
+
+  .pt-item {
+    min-width: 46px;
+  }
+
+  .pt-big-num {
+    font-size: 2rem;
+  }
+
+  .pt-sublabel {
+    font-size: 0.5rem;
+    letter-spacing: 0.16em;
+    margin-top: 0.35rem;
+  }
+
+  .pt-colon {
+    font-size: 1.5rem;
+    margin-top: 0.1rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .pt-numbers-row {
+    gap: 0.18rem;
+  }
+
+  .pt-item {
+    min-width: 40px;
+  }
+
+  .pt-big-num {
+    font-size: 1.7rem;
+  }
+
+  .pt-sublabel {
+    font-size: 0.44rem;
+    letter-spacing: 0.1em;
+  }
+
+  .pt-colon {
+    font-size: 1.3rem;
   }
 }
 
