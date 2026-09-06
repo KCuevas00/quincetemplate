@@ -1450,46 +1450,43 @@ body {
   box-shadow: 0 6px 18px rgba(178, 115, 99, 0.45);
 }
 
-/* Envelope Front Pocket (Kraft Camel Warm Paper with Diagonal Seams) */
+/* Envelope Front Pocket (Full-Height Natural Fold with Elegant V-Cut Opening) */
 .env-pocket {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 195px;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   background: linear-gradient(175deg, #caa170 0%, #be9463 60%, #b28857 100%);
-  border-radius: 0 0 4px 4px;
+  border-radius: 4px;
   z-index: 12;
-  overflow: hidden;
-  box-shadow: 0 -3px 12px rgba(60, 35, 20, 0.12);
+  /* Reaches top corners (0,0) and (100%,0) to completely eliminate corner gaps, dipping to 125px in center */
+  clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0, 50% 125px);
+  box-shadow: inset 0 -4px 15px rgba(60, 35, 20, 0.15);
 }
 
-/* Subtle Realistic Seam Lines on Kraft Envelope */
+/* Subtle Realistic Seam Lines on Kraft Envelope Pocket */
 .env-pocket::before {
   content: '';
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background-image: 
-    linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, transparent 48%),
-    linear-gradient(-135deg, rgba(0, 0, 0, 0.08) 0%, transparent 48%);
+    linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0%, transparent 45%),
+    linear-gradient(-135deg, rgba(0, 0, 0, 0.08) 0%, transparent 45%);
   pointer-events: none;
 }
 
-/* Envelope 3D Triangular Top Flap (Clean Kraft Paper, No Text) */
+/* Envelope 3D Triangular Top Flap (Overlaps pocket completely with zero gaps) */
 .env-flap {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 145px;
+  height: 155px;
   transform-origin: top center;
   transform-style: preserve-3d;
   z-index: 15;
   transition: transform 0.85s cubic-bezier(0.35, 1.2, 0.45, 1);
-  filter: drop-shadow(0 6px 10px rgba(60, 35, 20, 0.2));
+  filter: drop-shadow(0 6px 12px rgba(60, 35, 20, 0.22));
   clip-path: polygon(0 0, 100% 0, 50% 100%);
   background: linear-gradient(160deg, #caa170 0%, #bd9362 100%);
   border-top: 1px solid rgba(255, 255, 255, 0.3);
@@ -1500,16 +1497,16 @@ body {
   z-index: 3;
 }
 
-/* Soft Pearlescent Blush Wax Seal at the Tip of the Flap */
+/* ── LUMINOUS GLOWING WAX SEAL / STAMP ANIMATION (NO WORDS NEEDED) ── */
 .env-wax-seal-wrapper {
   position: absolute;
-  top: 110px;
+  top: 118px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 22;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
   transition: opacity 0.45s ease, transform 0.45s ease;
 }
 
@@ -1519,26 +1516,71 @@ body {
   pointer-events: none;
 }
 
+/* Radiant Ambient Candlelight Glow Aura */
 .seal-glow-halo {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 86px;
-  height: 86px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(232, 194, 183, 0.45) 0%, rgba(232, 194, 183, 0) 70%);
-  filter: blur(6px);
-  animation: sealHaloPulse 2.4s infinite ease-in-out;
+  background: radial-gradient(circle, rgba(245, 200, 185, 0.8) 0%, rgba(217, 160, 140, 0.45) 42%, rgba(212, 175, 55, 0.2) 62%, transparent 75%);
+  filter: blur(10px);
+  animation: sealHaloBreathe 3s infinite ease-in-out;
   pointer-events: none;
 }
 
-@keyframes sealHaloPulse {
-  0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(0.95); }
-  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.15); }
+/* Ripple Waves Expanding from Behind the Stamp */
+.seal-pulse-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 74px;
+  height: 74px;
+  border-radius: 50%;
+  border: 2px solid rgba(235, 180, 160, 0.75);
+  pointer-events: none;
+  animation: sealRingRipple 3s infinite cubic-bezier(0.15, 0.85, 0.35, 1);
 }
 
+.seal-pulse-ring.ring-delayed {
+  animation-delay: 1.5s;
+}
+
+@keyframes sealHaloBreathe {
+  0%, 100% {
+    opacity: 0.55;
+    transform: translate(-50%, -50%) scale(0.92);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.22);
+  }
+}
+
+@keyframes sealRingRipple {
+  0% {
+    transform: translate(-50%, -50%) scale(0.85);
+    opacity: 0.95;
+    border-color: rgba(235, 180, 160, 0.85);
+    box-shadow: 0 0 15px rgba(235, 180, 160, 0.6);
+  }
+  60% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.7);
+    opacity: 0;
+    border-color: rgba(217, 175, 55, 0);
+    box-shadow: 0 0 25px rgba(217, 175, 55, 0);
+  }
+}
+
+/* Stamp Button with Ambient Pulsing Glow */
 .wax-seal-btn {
+  position: relative;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -1547,58 +1589,29 @@ body {
   align-items: center;
   justify-content: center;
   outline: none;
-  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border-radius: 50%;
+  animation: stampPulseGlow 3s infinite ease-in-out;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes stampPulseGlow {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 4px 12px rgba(160, 80, 65, 0.35)) drop-shadow(0 0 10px rgba(245, 200, 190, 0.45));
+  }
+  50% {
+    transform: scale(1.05);
+    filter: drop-shadow(0 6px 18px rgba(160, 80, 65, 0.55)) drop-shadow(0 0 22px rgba(250, 215, 205, 0.85)) drop-shadow(0 0 32px rgba(217, 175, 55, 0.4));
+  }
 }
 
 .wax-seal-btn:hover {
-  transform: scale(1.08);
+  transform: scale(1.12) !important;
+  filter: drop-shadow(0 8px 24px rgba(160, 80, 65, 0.65)) drop-shadow(0 0 28px rgba(255, 225, 215, 0.95)) !important;
 }
 
 .wax-seal-btn:active {
-  transform: scale(0.94);
-}
-
-/* Clean, Minimal "CLICK TO OPEN" (Exact Match to Reference) */
-.env-click-prompt {
-  margin-top: 36px;
-  cursor: pointer;
-  user-select: none;
-  text-align: center;
-  animation: promptFade 2.5s infinite ease-in-out;
-}
-
-@keyframes promptFade {
-  0%, 100% { opacity: 0.65; transform: translateY(0); }
-  50% { opacity: 1; transform: translateY(2px); }
-}
-
-.click-prompt-text {
-  font-family: var(--font-sans);
-  font-size: 0.68rem;
-  font-weight: 500;
-  letter-spacing: 0.26em;
-  color: #8c7365;
-  text-transform: uppercase;
-}
-
-/* Direct Skip Button */
-.entry-direct-skip {
-  position: absolute;
-  bottom: 20px;
-  background: transparent;
-  border: none;
-  color: rgba(120, 95, 80, 0.55);
-  font-family: var(--font-sans);
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
-  cursor: pointer;
-  z-index: 20;
-  transition: color 0.2s ease, transform 0.2s ease;
-}
-
-.entry-direct-skip:hover {
-  color: #4a362c;
-  transform: translateY(2px);
+  transform: scale(0.96) !important;
 }
 
 @media (max-width: 480px) {
@@ -1623,17 +1636,16 @@ body {
     height: 220px;
   }
   .env-pocket {
-    height: 160px;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0, 50% 112px);
   }
   .env-flap {
-    height: 120px;
-  }
-  .env-flap-calligraphy {
-    font-size: 1.8rem;
-    top: 18px;
+    height: 138px;
   }
   .env-wax-seal-wrapper {
-    top: 90px;
+    top: 104px;
   }
   .flower-card-top-right {
     top: -38px;

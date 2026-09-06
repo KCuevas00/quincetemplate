@@ -403,7 +403,6 @@ function initEntryExperience() {
   const envelope = document.getElementById('luxury-envelope');
   const sealTrigger = document.getElementById('wax-seal-trigger');
   const enterCardBtn = document.getElementById('btn-enter-invitation');
-  const directSkipBtn = document.getElementById('entry-direct-skip-btn');
 
   if (!overlay || !envelope) return;
 
@@ -569,13 +568,6 @@ function initEntryExperience() {
       enterWebsite();
     });
   }
-
-  if (directSkipBtn) {
-    directSkipBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      enterWebsite();
-    });
-  }
 }
 
 /* ═════════════════════════════════════════════════════════════════════
@@ -587,8 +579,6 @@ function initLanguageSwitcher() {
 
   const translations = {
     en: {
-      'seal-hint': 'TAP SEAL TO OPEN',
-      'skip-link': 'Skip to invitation ↓',
       'audio-music': 'Music',
       'nav-invitation': 'INVITATION',
       'nav-program': 'PROGRAM',
@@ -633,8 +623,6 @@ function initLanguageSwitcher() {
       'modal-success-desc': 'Your RSVP has been saved. We cannot wait to celebrate with you!'
     },
     es: {
-      'seal-hint': 'TOCA EL SELLO PARA ABRIR',
-      'skip-link': 'Saltar a la invitación ↓',
       'audio-music': 'Música',
       'nav-invitation': 'INVITACIÓN',
       'nav-program': 'PROGRAMA',
