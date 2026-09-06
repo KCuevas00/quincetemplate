@@ -542,7 +542,6 @@ function initLanguageSwitcher() {
 
   const translations = {
     en: {
-      'audio-music': 'Music',
       'nav-invitation': 'INVITATION',
       'nav-program': 'PROGRAM',
       'nav-rsvp': 'RSVP',
@@ -585,7 +584,6 @@ function initLanguageSwitcher() {
       'modal-success-desc': 'Your RSVP has been saved. We cannot wait to celebrate with you!'
     },
     es: {
-      'audio-music': 'Música',
       'nav-invitation': 'INVITACIÓN',
       'nav-program': 'PROGRAMA',
       'nav-rsvp': 'CONFIRMAR',

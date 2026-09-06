@@ -163,14 +163,6 @@ body {
   }
 }
 
-.audio-text {
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  color: var(--text-dark);
-  text-transform: uppercase;
-}
-
 /* Volume Panel & Slider */
 .audio-volume-panel {
   display: inline-flex;
@@ -1598,9 +1590,6 @@ body {
     right: 0.75rem;
     padding: 3px 6px 3px 4px;
     gap: 0.25rem;
-  }
-  .audio-text {
-    display: none; /* Ultra-clean compact audio pill on mobile */
   }
   .audio-volume-panel {
     padding-left: 0.25rem;
