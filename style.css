@@ -993,6 +993,188 @@ body.site-entered .audio-control-bar {
 }
 
 /* ═════════════════════════════════════════════════════════════════════
+   SECTION: COURT OF HONOR (CORTE DE HONOR)
+   ═════════════════════════════════════════════════════════════════════ */
+.court-section {
+  border-top: 1px solid rgba(211, 149, 133, 0.18);
+  background: #ffffff;
+  padding-bottom: 2.8rem;
+  text-align: center;
+}
+
+.court-header {
+  margin-bottom: 1.8rem;
+  text-align: center;
+}
+
+.court-title {
+  font-family: var(--font-serif);
+  font-size: 2.1rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: var(--text-dark);
+  text-transform: uppercase;
+}
+
+/* Main Focus: Chambelán de Honor */
+.court-honor-centerpiece {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 2.2rem;
+  max-width: 320px;
+}
+
+.court-role-badge {
+  font-family: var(--font-sans);
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  color: var(--rose-gold-dark);
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+}
+
+.court-avatar-wrapper {
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fcf9f8;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+}
+
+.avatar-main {
+  width: 128px;
+  height: 128px;
+  border: 2.5px solid var(--rose-gold);
+  box-shadow: 0 8px 24px rgba(200, 134, 118, 0.22);
+  margin-bottom: 0.65rem;
+}
+
+.court-honor-centerpiece:hover .avatar-main {
+  transform: scale(1.04);
+  border-color: var(--gold-accent);
+  box-shadow: 0 12px 30px rgba(200, 134, 118, 0.32);
+}
+
+.court-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.court-member-name {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  color: var(--text-dark);
+  line-height: 1.25;
+}
+
+.name-main {
+  font-size: 1.28rem;
+  letter-spacing: 0.05em;
+  color: #2e1c17;
+}
+
+/* Roster Stage: Damas & Chambelanes */
+.court-roster-stage {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+  padding: 0 0.8rem;
+}
+
+.court-subgroup-title {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.24em;
+  color: var(--rose-gold-dark);
+  text-transform: uppercase;
+  margin-bottom: 0.95rem;
+  position: relative;
+  display: inline-block;
+}
+
+.court-subgroup-title::after {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1.5px;
+  background: var(--rose-gold);
+  margin: 0.35rem auto 0;
+  opacity: 0.7;
+}
+
+.court-members-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.9rem;
+  align-items: start;
+}
+
+.court-member-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.avatar-small {
+  width: 76px;
+  height: 76px;
+  border: 1.5px solid rgba(200, 134, 118, 0.45);
+  box-shadow: 0 3px 10px rgba(200, 134, 118, 0.12);
+  margin-bottom: 0.45rem;
+}
+
+.court-member-card:hover .avatar-small {
+  transform: scale(1.08);
+  border-color: var(--gold-accent);
+  box-shadow: 0 6px 16px rgba(200, 134, 118, 0.26);
+}
+
+.court-member-card .court-member-name {
+  font-size: 0.84rem;
+  letter-spacing: 0.02em;
+  color: #382520;
+}
+
+/* Mobile Responsiveness for Court Grid */
+@media (max-width: 520px) {
+  .avatar-main {
+    width: 110px;
+    height: 110px;
+  }
+
+  .name-main {
+    font-size: 1.15rem;
+  }
+
+  .court-members-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.1rem 0.8rem;
+  }
+
+  .avatar-small {
+    width: 68px;
+    height: 68px;
+  }
+
+  .court-member-card .court-member-name {
+    font-size: 0.8rem;
+  }
+}
+
+/* ═════════════════════════════════════════════════════════════════════
    SECTION 3: RSVP & DETAILS
    ═════════════════════════════════════════════════════════════════════ */
 .rsvp-section {

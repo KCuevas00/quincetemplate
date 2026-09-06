@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <radialGradient id="chambelanHonorGrad" cx="40%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#fff8f5" />
+      <stop offset="60%" stop-color="#f5ded7" />
+      <stop offset="100%" stop-color="#e0aba0" />
+    </radialGradient>
+    <linearGradient id="suitGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4a332d" />
+      <stop offset="100%" stop-color="#2a1a15" />
+    </linearGradient>
+  </defs>
+  <circle cx="100" cy="100" r="98" fill="url(#chambelanHonorGrad)" stroke="#c88676" stroke-width="2.5" />
+  <!-- Head -->
+  <circle cx="100" cy="74" r="32" fill="url(#suitGrad)" />
+  <!-- Hair styling -->
+  <path d="M72 70c0-20 12-34 28-34s28 14 28 34c-6-10-18-14-28-14s-22 4-28 14z" fill="#201310" />
+  <!-- Formal Tuxedo / Suit Shoulders -->
+  <path d="M42 178c4-42 24-64 58-64s54 22 58 64z" fill="url(#suitGrad)" />
+  <!-- White Dress Shirt Collar -->
+  <path d="M88 114l12 18 12-18-12-6z" fill="#ffffff" />
+  <!-- Rose Gold Bow-tie -->
+  <polygon points="90,126 100,129 90,132" fill="#c88676" />
+  <polygon points="110,126 100,129 110,132" fill="#c88676" />
+  <circle cx="100" cy="129" r="2.5" fill="#b87060" />
+  <!-- Lapel V-Cut -->
+  <path d="M78 114l22 44 22-44" fill="none" stroke="#2a1a15" stroke-width="3" />
+</svg>
