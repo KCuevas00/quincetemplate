@@ -259,9 +259,14 @@ body.site-entered .audio-control-bar {
   box-shadow: 0 4px 18px rgba(178, 115, 99, 0.16);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease 0.2s, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.site-entered .lang-control-bar {
   opacity: 1;
   pointer-events: auto;
-  transition: var(--transition-smooth);
 }
 
 .lang-control-bar:hover {
