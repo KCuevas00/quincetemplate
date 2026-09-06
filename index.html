@@ -216,8 +216,62 @@
           <div class="date-year">2025</div>
         </div>
 
-        <!-- Location Details -->
-        <p class="venue-location-hint" data-i18n="invite-venue">THE GRAND BALLROOM • SAN ANTONIO, TX</p>
+        <!-- Dual Venue Locations & Direction Actions -->
+        <div class="invitation-venues-wrapper" role="region" aria-label="Venues and Directions">
+          
+          <!-- Venue 1: Ceremony / Mass -->
+          <div class="venue-location-card">
+            <div class="venue-card-badge">
+              <span class="venue-badge-dot">✦</span>
+              <span class="venue-type-text" data-i18n="loc-ceremony-type">CEREMONY • 2:00 PM</span>
+            </div>
+            <h3 class="venue-title" data-i18n="loc-ceremony-name">St. Concord Church</h3>
+            <p class="venue-address">San Antonio, Texas</p>
+            <div class="venue-nav-actions">
+              <a href="https://www.google.com/maps/search/?api=1&query=St.+Concord+Church+San+Antonio+TX" 
+                 target="_blank" rel="noopener noreferrer" class="venue-map-btn btn-google" aria-label="Open St. Concord Church in Google Maps">
+                <svg class="map-icon" viewBox="0 0 24 24" width="13" height="13" fill="currentColor">
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                </svg>
+                <span>Google Maps</span>
+              </a>
+              <a href="https://maps.apple.com/?q=St.+Concord+Church+San+Antonio+TX" 
+                 target="_blank" rel="noopener noreferrer" class="venue-map-btn btn-apple" aria-label="Open St. Concord Church in Apple Maps">
+                <svg class="map-icon" viewBox="0 0 24 24" width="13" height="13" fill="currentColor">
+                  <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm3.7 7.3-2.3 6.9a.75.75 0 0 1-.48.48l-6.9 2.3a.75.75 0 0 1-.95-.95l2.3-6.9a.75.75 0 0 1 .48-.48l6.9-2.3a.75.75 0 0 1 .95.95zm-4.7 3.7a1 1 0 1 1 1-1 1 1 0 0 1-1 1z"/>
+                </svg>
+                <span>Apple Maps</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Venue 2: Reception & Ballroom Party -->
+          <div class="venue-location-card">
+            <div class="venue-card-badge">
+              <span class="venue-badge-dot">✦</span>
+              <span class="venue-type-text" data-i18n="loc-reception-type">RECEPTION • 4:30 PM</span>
+            </div>
+            <h3 class="venue-title" data-i18n="loc-reception-name">The Grand Ballroom</h3>
+            <p class="venue-address">San Antonio, Texas</p>
+            <div class="venue-nav-actions">
+              <a href="https://www.google.com/maps/search/?api=1&query=The+Grand+Ballroom+San+Antonio+TX" 
+                 target="_blank" rel="noopener noreferrer" class="venue-map-btn btn-google" aria-label="Open The Grand Ballroom in Google Maps">
+                <svg class="map-icon" viewBox="0 0 24 24" width="13" height="13" fill="currentColor">
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                </svg>
+                <span>Google Maps</span>
+              </a>
+              <a href="https://maps.apple.com/?q=The+Grand+Ballroom+San+Antonio+TX" 
+                 target="_blank" rel="noopener noreferrer" class="venue-map-btn btn-apple" aria-label="Open The Grand Ballroom in Apple Maps">
+                <svg class="map-icon" viewBox="0 0 24 24" width="13" height="13" fill="currentColor">
+                  <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm3.7 7.3-2.3 6.9a.75.75 0 0 1-.48.48l-6.9 2.3a.75.75 0 0 1-.95-.95l2.3-6.9a.75.75 0 0 1 .48-.48l6.9-2.3a.75.75 0 0 1 .95.95zm-4.7 3.7a1 1 0 1 1 1-1 1 1 0 0 1-1 1z"/>
+                </svg>
+                <span>Apple Maps</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
 
         <!-- Scroll down indicator -->
         <a href="#program" class="scroll-down-btn" aria-label="Scroll to program">
