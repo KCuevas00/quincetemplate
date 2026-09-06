@@ -72,32 +72,53 @@ body {
   opacity: 0.6;
 }
 
-/* ── FLOATING AUDIO PILL ── */
-.audio-toggle-wrapper {
+/* ── FLOATING AUDIO CONTROL BAR (PLAY/PAUSE & VOLUME SLIDER) ── */
+.audio-control-bar {
   position: fixed;
   top: 1.2rem;
   right: 1.5rem;
   z-index: 100;
-}
-
-.audio-btn {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(211, 149, 133, 0.4);
-  padding: 0.45rem 0.95rem;
-  border-radius: 30px;
-  cursor: pointer;
-  box-shadow: 0 4px 15px rgba(178, 115, 99, 0.15);
-  backdrop-filter: blur(8px);
+  gap: 0.35rem;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(200, 134, 118, 0.35);
+  border-radius: 999px;
+  padding: 4px 10px 4px 6px;
+  box-shadow: 0 4px 18px rgba(178, 115, 99, 0.16);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   transition: var(--transition-smooth);
 }
 
-.audio-btn:hover {
+.audio-control-bar:hover {
   background: #ffffff;
-  border-color: var(--rose-gold);
-  transform: translateY(-2px);
+  box-shadow: 0 6px 22px rgba(178, 115, 99, 0.22);
+}
+
+.audio-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 999px;
+  transition: opacity 0.2s ease;
+}
+
+.audio-btn:hover {
+  opacity: 0.85;
+}
+
+.audio-play-icon,
+.audio-pause-icon {
+  font-size: 0.72rem;
+  color: var(--rose-gold);
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
 }
 
 .audio-wave {
@@ -133,12 +154,10 @@ body {
 }
 
 @keyframes soundWave {
-
   0%,
   100% {
     height: 3px;
   }
-
   50% {
     height: 14px;
   }
@@ -148,8 +167,70 @@ body {
   font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.08em;
+  color: var(--text-dark);
   text-transform: uppercase;
-  color: var(--rose-gold-dark);
+}
+
+/* Volume Panel & Slider */
+.audio-volume-panel {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding-left: 0.4rem;
+  border-left: 1px solid rgba(200, 134, 118, 0.28);
+}
+
+.volume-mute-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--text-subtle);
+  display: flex;
+  align-items: center;
+  padding: 3px;
+  border-radius: 50%;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.volume-mute-btn:hover {
+  color: var(--text-dark);
+  transform: scale(1.1);
+}
+
+.volume-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 62px;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(200, 134, 118, 0.25);
+  outline: none;
+  cursor: pointer;
+}
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--rose-gold);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.volume-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.25);
+}
+
+.volume-slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--rose-gold);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
 }
 
 /* ── STICKY TOP NAVIGATION ── */
@@ -224,7 +305,69 @@ body {
     0 4px 20px rgba(0, 0, 0, 0.04),
     inset 0 0 0 1px rgba(255, 255, 255, 0.9),
     inset 0 0 35px rgba(247, 216, 206, 0.22);
-  overflow: hidden;
+  overflow: visible;
+}
+
+/* ── OVERLAPPING FLORAL CORNER SPRAYS ON INVITATION CARD ── */
+.invitation-floral-frame {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 25; /* Overlap in front of the letter border & contents */
+}
+
+.invitation-flower-spray {
+  position: absolute;
+  object-fit: contain;
+  pointer-events: none;
+  filter: drop-shadow(0 14px 26px rgba(70, 45, 30, 0.18));
+}
+
+.flower-card-top-right {
+  top: -52px;
+  right: -52px;
+  width: 280px;
+  height: 280px;
+  max-width: 55vw;
+  max-height: 55vw;
+}
+
+.flower-card-bottom-left {
+  bottom: -52px;
+  left: -52px;
+  width: 280px;
+  height: 280px;
+  max-width: 55vw;
+  max-height: 55vw;
+}
+
+/* Inside Envelope Card Mini Floral Accent */
+.env-card-floral-frame {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 15;
+}
+
+.env-card-flower {
+  position: absolute;
+  object-fit: contain;
+  pointer-events: none;
+  filter: drop-shadow(0 4px 10px rgba(70, 45, 30, 0.12));
+}
+
+.env-card-flower.top-right {
+  top: -24px;
+  right: -24px;
+  width: 105px;
+  height: 105px;
+}
+
+.env-card-flower.bottom-left {
+  bottom: -24px;
+  left: -24px;
+  width: 105px;
+  height: 105px;
 }
 
 /* Ornate Gold Filigree Corner Accents */
@@ -1491,6 +1634,18 @@ body {
   }
   .env-wax-seal-wrapper {
     top: 90px;
+  }
+  .flower-card-top-right {
+    top: -38px;
+    right: -25px;
+    width: 180px;
+    height: 180px;
+  }
+  .flower-card-bottom-left {
+    bottom: -38px;
+    left: -25px;
+    width: 180px;
+    height: 180px;
   }
 }
 

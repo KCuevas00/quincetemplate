@@ -247,11 +247,22 @@ function initAmbientCanvas() {
    ═════════════════════════════════════════════════════════════════════ */
 function initAudioEngine() {
   const audioBtn = document.getElementById('audio-toggle-btn');
+  const audioPlayIcon = document.getElementById('audio-play-icon');
+  const audioPauseIcon = document.getElementById('audio-pause-icon');
+  const volumeSlider = document.getElementById('audio-volume-slider');
+  const muteBtn = document.getElementById('audio-mute-btn');
+  const volIcon = document.getElementById('vol-icon');
+
   if (!audioBtn) return;
 
   const audio = document.getElementById('bg-audio') || new Audio('music/Fuerza Regida, Grupo Frontera - Bebe Dame (SPOTISAVER).mp3');
   const START_TIME = 12; // Start at 12 seconds
   let hasSetInitialTime = false;
+  let isPlaying = false;
+  let lastNonZeroVolume = 0.8;
+
+  // Set default initial volume
+  audio.volume = 0.8;
 
   function ensureStartTime() {
     if (!hasSetInitialTime) {
@@ -264,7 +275,36 @@ function initAudioEngine() {
 
   audio.addEventListener('loadedmetadata', ensureStartTime);
 
-  let isPlaying = false;
+  function updatePlayState(playing) {
+    isPlaying = playing;
+    if (audioBtn) {
+      if (playing) {
+        audioBtn.classList.add('playing');
+        if (audioPlayIcon) audioPlayIcon.style.display = 'none';
+        if (audioPauseIcon) audioPauseIcon.style.display = 'inline-flex';
+      } else {
+        audioBtn.classList.remove('playing');
+        if (audioPlayIcon) audioPlayIcon.style.display = 'inline-flex';
+        if (audioPauseIcon) audioPauseIcon.style.display = 'none';
+      }
+    }
+  }
+
+  function updateVolumeUI() {
+    const isMuted = audio.muted || audio.volume === 0;
+    if (volIcon) {
+      if (isMuted) {
+        volIcon.innerHTML = '<path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27l4.05 4.05L7 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>';
+      } else if (audio.volume <= 0.5) {
+        volIcon.innerHTML = '<path d="M18.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM5 9v6h4l5 5V4L9 9H5z"/>';
+      } else {
+        volIcon.innerHTML = '<path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>';
+      }
+    }
+    if (volumeSlider) {
+      volumeSlider.value = isMuted ? 0 : audio.volume;
+    }
+  }
 
   function playAudio() {
     ensureStartTime();
@@ -272,8 +312,7 @@ function initAudioEngine() {
     if (playPromise !== undefined) {
       playPromise
         .then(() => {
-          isPlaying = true;
-          audioBtn.classList.add('playing');
+          updatePlayState(true);
         })
         .catch(err => {
           console.warn('Audio play prevented or interrupted:', err);
@@ -283,10 +322,10 @@ function initAudioEngine() {
 
   function pauseAudio() {
     audio.pause();
-    isPlaying = false;
-    audioBtn.classList.remove('playing');
+    updatePlayState(false);
   }
 
+  // Play / Pause Button Click
   audioBtn.addEventListener('click', (e) => {
     e.stopPropagation();
     if (isPlaying) {
@@ -296,14 +335,42 @@ function initAudioEngine() {
     }
   });
 
+  // Volume Slider Change
+  if (volumeSlider) {
+    volumeSlider.addEventListener('input', (e) => {
+      const val = parseFloat(e.target.value);
+      audio.volume = val;
+      if (val > 0) {
+        audio.muted = false;
+        lastNonZeroVolume = val;
+      } else {
+        audio.muted = true;
+      }
+      updateVolumeUI();
+    });
+  }
+
+  // Mute / Unmute Button Click
+  if (muteBtn) {
+    muteBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (audio.muted || audio.volume === 0) {
+        audio.muted = false;
+        audio.volume = lastNonZeroVolume || 0.8;
+      } else {
+        lastNonZeroVolume = audio.volume;
+        audio.muted = true;
+      }
+      updateVolumeUI();
+    });
+  }
+
   audio.addEventListener('play', () => {
-    isPlaying = true;
-    audioBtn.classList.add('playing');
+    updatePlayState(true);
   });
 
   audio.addEventListener('pause', () => {
-    isPlaying = false;
-    audioBtn.classList.remove('playing');
+    updatePlayState(false);
   });
 
   // When song ends, loop back directly to 12 seconds
@@ -312,10 +379,13 @@ function initAudioEngine() {
       audio.currentTime = START_TIME;
       audio.play().catch(() => {});
     } catch (e) {
-      isPlaying = false;
-      audioBtn.classList.remove('playing');
+      updatePlayState(false);
     }
   });
+
+  // Initialize UI state
+  updatePlayState(false);
+  updateVolumeUI();
 
   // Expose global starter for when envelope opens
   window.playAmbientSong = () => {

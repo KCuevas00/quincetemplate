@@ -41,6 +41,10 @@
 
         <!-- Inside Invitation Card (glides up when seal is broken) -->
         <div class="env-invitation-card" id="env-card">
+          <div class="env-card-floral-frame" aria-hidden="true">
+            <img src="photos/envelope-flowers-top.png" alt="" class="env-card-flower top-right" />
+            <img src="photos/envelope-flowers-bottom.png" alt="" class="env-card-flower bottom-left" />
+          </div>
           <div class="card-gold-frame">
             <div class="card-crown-flourish">
               <svg viewBox="0 0 48 24" width="34" height="17" fill="none" stroke="currentColor" stroke-width="1.6">
@@ -134,15 +138,25 @@
   <!-- Subtle ambient background sparkle canvas -->
   <canvas id="ambient-canvas" aria-hidden="true"></canvas>
 
-  <!-- Floating Audio Toggle -->
-  <div class="audio-toggle-wrapper">
+  <!-- Floating Audio Controls (Play/Pause & Volume Slider) -->
+  <div class="audio-control-bar" id="audio-control-bar" role="region" aria-label="Music Player">
     <button id="audio-toggle-btn" class="audio-btn" type="button" aria-label="Toggle background music"
-      title="Ambient Music">
+      title="Play / Pause">
+      <span class="audio-play-icon" id="audio-play-icon">▶</span>
+      <span class="audio-pause-icon" id="audio-pause-icon" style="display: none;">❚❚</span>
       <span class="audio-wave">
         <i></i><i></i><i></i><i></i>
       </span>
       <span class="audio-text" data-i18n="audio-music">Music</span>
     </button>
+    <div class="audio-volume-panel">
+      <button id="audio-mute-btn" class="volume-mute-btn" type="button" aria-label="Mute or unmute" title="Mute / Unmute">
+        <svg id="vol-icon" viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+          <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+        </svg>
+      </button>
+      <input type="range" id="audio-volume-slider" class="volume-slider" min="0" max="1" step="0.02" value="0.8" aria-label="Volume Slider" />
+    </div>
   </div>
 
   <!-- Background Audio Soundtrack -->
@@ -162,6 +176,12 @@
 
   <!-- Main Website Content Container (Enhanced with Ornate Gold Filigree Corner Accents) -->
   <main class="invitation-wrapper">
+
+    <!-- Transparent Botanical Floral Sprays Overlapping the Invitation Corners -->
+    <div class="invitation-floral-frame" aria-hidden="true">
+      <img src="photos/envelope-flowers-top.png" alt="" class="invitation-flower-spray flower-card-top-right" />
+      <img src="photos/envelope-flowers-bottom.png" alt="" class="invitation-flower-spray flower-card-bottom-left" />
+    </div>
 
     <!-- Ornate Gold Filigree Corner Accents on Card Frame -->
     <div class="corner-filigree corner-top-left" aria-hidden="true"></div>
