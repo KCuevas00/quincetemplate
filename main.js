@@ -1,6 +1,6 @@
 /**
  * ═════════════════════════════════════════════════════════════════════
- * QUINCE TEMPLATE — ISABELLA SMITH
+ * QUINCE TEMPLATE — VALERIA MORALES
  * Interactive Controller: Smooth Navigation, RSVP Modal, Confetti & Audio
  * ═════════════════════════════════════════════════════════════════════
  */
@@ -598,14 +598,14 @@ function initLanguageSwitcher() {
       'nav-invitation': 'INVITATION',
       'nav-program': 'PROGRAM',
       'nav-rsvp': 'RSVP',
-      'invite-parents': 'VERONICA & MIGUEL MARTINEZ',
+      'invite-parents': 'ALEJANDRO & MARIANA MORALES',
       'invite-preamble': 'WARMLY INVITE YOU TO CELEBRATE THE',
       'invite-quince': 'Quinceañera',
       'invite-daughter': 'OF THEIR DAUGHTER',
-      'invite-date-month': 'OCT',
+      'invite-date-month': 'JUL',
       'invite-date-day': 'SATURDAY',
       'invite-date-time': 'AT 4:00 PM',
-      'invite-date-short': 'OCT 15, 2025',
+      'invite-date-short': 'JUL 17, 2027',
       'invite-venue': 'THE GRAND BALLROOM • SAN ANTONIO, TX',
       'loc-ceremony-type': 'CEREMONY • 2:00 PM',
       'loc-ceremony-name': 'St. Concord Church',
@@ -633,11 +633,11 @@ function initLanguageSwitcher() {
       'court-role-chambelan': 'CHAMBELÁN DE HONOR',
       'court-damas-title': 'DAMAS',
       'court-chambelanes-title': 'CHAMBELANES',
-      'rsvp-deadline': 'BY OCTOBER 15',
+      'rsvp-deadline': 'BY JULY 17',
       'rsvp-instruction': 'CLICK THE RSVP BUTTON AND<br/>LET US KNOW IF YOU CAN MAKE IT',
       'rsvp-thankyou': 'Thank You',
-      'modal-title': 'RSVP to Isabella\'s Quinceañera',
-      'modal-subtitle': 'Saturday, October 15, 2025 • San Antonio, TX',
+      'modal-title': 'RSVP to Valeria\'s Quinceañera',
+      'modal-subtitle': 'Saturday, July 17, 2027 • San Antonio, TX',
       'label-fullname': 'Your Full Name(s) *',
       'label-email': 'Phone or Email *',
       'label-attend': 'Will You Be Attending? *',
@@ -645,7 +645,7 @@ function initLanguageSwitcher() {
       'opt-yes': 'Joyfully Accept (I will be there!)',
       'opt-no': 'Regretfully Decline (Celebrating in spirit)',
       'label-party': 'Total Number of Guests Attending',
-      'label-notes': 'Warm Wishes / Song Request for Isabella',
+      'label-notes': 'Warm Wishes / Song Request for Valeria',
       'btn-submit': 'Confirm RSVP',
       'modal-success-title': 'Thank You So Much!',
       'modal-success-desc': 'Your RSVP has been saved. We cannot wait to celebrate with you!'
@@ -654,14 +654,14 @@ function initLanguageSwitcher() {
       'nav-invitation': 'INVITACIÓN',
       'nav-program': 'PROGRAMA',
       'nav-rsvp': 'CONFIRMAR',
-      'invite-parents': 'VERÓNICA Y MIGUEL MARTÍNEZ',
+      'invite-parents': 'ALEJANDRO Y MARIANA MORALES',
       'invite-preamble': 'TIENEN EL HONOR DE INVITARLE A CELEBRAR LOS',
       'invite-quince': 'Quince Años',
       'invite-daughter': 'DE SU QUERIDA HIJA',
-      'invite-date-month': 'OCT',
+      'invite-date-month': 'JUL',
       'invite-date-day': 'SÁBADO',
       'invite-date-time': 'A LAS 4:00 PM',
-      'invite-date-short': '15 OCT, 2025',
+      'invite-date-short': '17 JUL, 2027',
       'invite-venue': 'THE GRAND BALLROOM • SAN ANTONIO, TX',
       'loc-ceremony-type': 'CEREMONIA • 2:00 PM',
       'loc-ceremony-name': 'Iglesia St. Concord',
@@ -689,11 +689,11 @@ function initLanguageSwitcher() {
       'court-role-chambelan': 'CHAMBELÁN DE HONOR',
       'court-damas-title': 'DAMAS',
       'court-chambelanes-title': 'CHAMBELANES',
-      'rsvp-deadline': 'ANTES DEL 15 DE OCTUBRE',
+      'rsvp-deadline': 'ANTES DEL 17 DE JULIO',
       'rsvp-instruction': 'HAGA CLIC EN EL BOTÓN Y<br/>CONFIRME SU ASISTENCIA',
       'rsvp-thankyou': 'Muchas Gracias',
-      'modal-title': 'Confirmar Asistencia - Quinceañera de Isabella',
-      'modal-subtitle': 'Sábado, 15 de Octubre, 2025 • San Antonio, TX',
+      'modal-title': 'Confirmar Asistencia - Quinceañera de Valeria',
+      'modal-subtitle': 'Sábado, 17 de Julio, 2027 • San Antonio, TX',
       'label-fullname': 'Nombre y Apellido(s) *',
       'label-email': 'Teléfono o Correo Electrónico *',
       'label-attend': '¿Asistirás a la Celebración? *',
@@ -771,15 +771,8 @@ function initCountdown() {
 
   if (!allDays.length && !document.getElementById('cd-days')) return;
 
-  // Target date for Isabella's Quinceañera: October 15 at 2:00 PM (Ceremony Start)
-  const now = new Date();
-  let targetYear = now.getFullYear();
-  let target = new Date(targetYear, 9, 15, 14, 0, 0); // Month is 0-indexed: 9 = October
-
-  // If this year's date has passed, target next year's celebration
-  if (target.getTime() - now.getTime() < 0) {
-    target = new Date(targetYear + 1, 9, 15, 14, 0, 0);
-  }
+  // Target date for Valeria's Quinceañera: Saturday, July 17, 2027 at 2:00 PM (Ceremony Start)
+  const target = new Date(2027, 6, 17, 14, 0, 0); // Month is 0-indexed: 6 = July 17, 2027
 
   function updateCountdown() {
     const currentTime = new Date().getTime();
