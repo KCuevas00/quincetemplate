@@ -1836,4 +1836,55 @@ body.site-entered .audio-control-bar {
     font-size: 1.75rem;
   }
 }
+
+/* ═════════════════════════════════════════════════════════════════════
+   SCROLL-TRIGGERED FADE-IN SYSTEM
+   Starting with the countdown, all subsequent sections, text, and images
+   fade in gracefully with soft upward float as the user scrolls down.
+   ═════════════════════════════════════════════════════════════════════ */
+.scroll-fade-in {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-fade-in.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-fade-scale {
+  opacity: 0;
+  transform: translateY(24px) scale(0.96);
+  transition: opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1), transform 0.95s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-fade-scale.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Graceful staggered delays for clustered items */
+.delay-1 {
+  transition-delay: 0.12s;
+}
+
+.delay-2 {
+  transition-delay: 0.22s;
+}
+
+.delay-3 {
+  transition-delay: 0.32s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-fade-in,
+  .scroll-fade-scale {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
 
