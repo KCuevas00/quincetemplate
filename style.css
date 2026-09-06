@@ -61,15 +61,15 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Prevent accidental scrolling while envelope is closed */
+/* Prevent accidental scrolling while envelope is closed.
+   NOTE: intentionally NOT using position:fixed here — toggling that
+   property off on iOS Safari can leave the viewport unable to scroll
+   even after the class is removed. overflow:hidden + touch-action:none
+   achieve the same lock without that bug. */
 html:not(.site-entered),
 body:not(.site-entered) {
   overflow: hidden !important;
-  height: 100% !important;
   height: 100vh !important;
-  position: fixed !important;
-  inset: 0 !important;
-  width: 100% !important;
   touch-action: none !important;
 }
 
@@ -316,6 +316,66 @@ body.site-entered .lang-control-bar {
 .lang-flag {
   font-size: 0.85rem;
   line-height: 1;
+}
+
+/* ── COLLAPSIBLE ARROW TOGGLE FOR LANGUAGE / AUDIO BARS ── */
+.control-arrow-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--rose-gold-dark);
+  border-radius: 50%;
+  transition: background 0.2s ease;
+}
+
+.control-arrow-btn:hover {
+  background: rgba(200, 134, 118, 0.14);
+}
+
+.control-arrow-btn .arrow-icon {
+  display: block;
+  font-size: 0.9rem;
+  line-height: 1;
+  transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.lang-btn-group,
+.audio-collapsible-content {
+  overflow: hidden;
+  max-width: 220px;
+  opacity: 1;
+  transition: max-width 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.25s ease, margin 0.4s ease;
+}
+
+.lang-control-bar .lang-btn-group {
+  margin-left: 2px;
+}
+
+.audio-control-bar .audio-collapsible-content {
+  margin-right: 2px;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.lang-control-bar.collapsed .lang-btn-group,
+.audio-control-bar.collapsed .audio-collapsible-content {
+  max-width: 0;
+  opacity: 0;
+  margin-left: 0;
+  margin-right: 0;
+  pointer-events: none;
+}
+
+.lang-control-bar.collapsed #lang-collapse-toggle .arrow-icon,
+.audio-control-bar.collapsed #audio-collapse-toggle .arrow-icon {
+  transform: rotate(180deg);
 }
 
 /* ── MAIN INVITATION CARD CONTAINER ── */
@@ -1184,6 +1244,37 @@ body.site-entered .lang-control-bar {
   color: #382520;
 }
 
+/* Elegant Wax-Seal Monogram Badges (echoes the envelope wax seal — replaces generic bordered-circle placeholders) */
+.monogram-avatar {
+  background: radial-gradient(circle at 34% 30%, #fbe7e0 0%, #eec7bb 38%, #d3a291 72%, #b17f6f 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border: none !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.4),
+    inset 0 -6px 10px rgba(120, 65, 52, 0.18),
+    0 6px 16px rgba(160, 80, 65, 0.22);
+}
+
+.monogram-letter {
+  font-family: var(--font-script);
+  font-weight: 400;
+  line-height: 1;
+  color: #ffffff;
+  text-shadow: 0 1.5px 3px rgba(110, 50, 40, 0.35);
+  user-select: none;
+}
+
+.avatar-small .monogram-letter {
+  font-size: 2.3rem;
+}
+
+.avatar-main.monogram-avatar .monogram-letter {
+  font-size: 3.8rem;
+}
+
 /* Mobile Responsiveness for Court Grid */
 @media (max-width: 520px) {
   .avatar-main {
@@ -1207,6 +1298,102 @@ body.site-entered .lang-control-bar {
 
   .court-member-card .court-member-name {
     font-size: 0.8rem;
+  }
+}
+
+/* ═════════════════════════════════════════════════════════════════════
+   SECTION: A MESSAGE FROM THE CELEBRANT
+   ═════════════════════════════════════════════════════════════════════ */
+.message-section {
+  border-top: 1px solid rgba(211, 149, 133, 0.18);
+  background: #ffffff;
+  padding-bottom: 3rem;
+}
+
+.message-stage {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.4rem;
+  text-align: center;
+}
+
+.message-portrait-wrap {
+  width: 132px;
+  height: 164px;
+  flex-shrink: 0;
+  border-radius: 66px 66px 14px 14px;
+  overflow: hidden;
+  box-shadow: 0 16px 32px rgba(180, 115, 99, 0.22), 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.message-portrait-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+.message-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.message-quote-mark {
+  font-family: var(--font-serif);
+  font-size: 2.6rem;
+  line-height: 1;
+  color: var(--rose-gold);
+  opacity: 0.55;
+  margin-bottom: -0.3rem;
+}
+
+.message-quote-text {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 1.65;
+  color: var(--text-charcoal);
+  max-width: 380px;
+  margin-bottom: 1rem;
+}
+
+.message-signature {
+  font-family: var(--font-script);
+  font-size: 2.2rem;
+  color: var(--rose-gold-dark);
+  line-height: 1;
+}
+
+@media (min-width: 640px) {
+  .message-stage {
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+    gap: 2.2rem;
+  }
+
+  .message-copy {
+    align-items: flex-start;
+    text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  .message-portrait-wrap {
+    width: 112px;
+    height: 140px;
+    border-radius: 56px 56px 12px 12px;
+  }
+
+  .message-quote-text {
+    font-size: 0.96rem;
   }
 }
 
@@ -1736,7 +1923,7 @@ body.site-entered .lang-control-bar {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.35s ease 0.32s, transform 0.75s cubic-bezier(0.18, 0.89, 0.32, 1.15) 1s, visibility 0.35s ease 0.32s;
+  transition: opacity 0.4s ease 0.1s, transform 0.6s cubic-bezier(0.18, 0.89, 0.32, 1.1) 0.1s, visibility 0.4s ease 0.1s;
   pointer-events: none;
 }
 

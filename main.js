@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCountdown();
   initMapLinks();
   initScrollFadeIn();
+  initControlToggles();
 });
 
 /* ═════════════════════════════════════════════════════════════════════
@@ -248,7 +249,7 @@ function initAudioEngine() {
 
   if (!audioBtn) return;
 
-  const audio = document.getElementById('bg-audio') || new Audio('music/Fuerza Regida, Grupo Frontera - Bebe Dame (SPOTISAVER).mp3');
+  const audio = document.getElementById('bg-audio') || new Audio('music/song.m4a');
   const START_TIME = 12; // Start at 12 seconds
   let hasSetInitialTime = false;
   let isPlaying = false;
@@ -531,10 +532,10 @@ function initEntryExperience() {
       window.playAmbientSong();
     }
 
-    // 4. Smoothly transition to the page much sooner (850ms)
+    // 4. Give the card time to rise into place and be read before dismissing (2.2s)
     setTimeout(() => {
       enterWebsite();
-    }, 850);
+    }, 2200);
   }
 
   // Action: Enter the Full Website
@@ -548,6 +549,13 @@ function initEntryExperience() {
     document.body.classList.add('site-entered');
     document.documentElement.classList.add('site-entered');
     overlay.classList.add('fade-out');
+
+    // iOS Safari sometimes doesn't recompute the scrollable viewport right
+    // away after the scroll-lock is lifted. Forcing a reflow + a resize
+    // event nudges it to recalculate immediately instead of leaving the
+    // page "frozen" until some other interaction triggers a layout pass.
+    void document.body.offsetHeight;
+    window.dispatchEvent(new Event('resize'));
 
     if (typeof window.playAmbientSong === 'function') {
       window.playAmbientSong();
@@ -637,6 +645,7 @@ function initLanguageSwitcher() {
       'court-role-chambelan': 'CHAMBELÁN DE HONOR',
       'court-damas-title': 'DAMAS',
       'court-chambelanes-title': 'CHAMBELANES',
+      'message-quote': 'To my family and friends — thank you for being part of my life and for celebrating this day with me. I can\'t wait to dance, laugh, and make memories with all of you!',
       'rsvp-deadline': 'BY JULY 17',
       'rsvp-instruction': 'CLICK THE RSVP BUTTON AND<br/>LET US KNOW IF YOU CAN MAKE IT',
       'rsvp-thankyou': 'Thank You',
@@ -697,6 +706,7 @@ function initLanguageSwitcher() {
       'court-role-chambelan': 'CHAMBELÁN DE HONOR',
       'court-damas-title': 'DAMAS',
       'court-chambelanes-title': 'CHAMBELANES',
+      'message-quote': 'A mi familia y amigos: gracias por ser parte de mi vida y por celebrar este día conmigo. ¡No puedo esperar para bailar, reír y crear recuerdos con todos ustedes!',
       'rsvp-deadline': 'ANTES DEL 17 DE JULIO',
       'rsvp-instruction': 'HAGA CLIC EN EL BOTÓN Y<br/>CONFIRME SU ASISTENCIA',
       'rsvp-thankyou': 'Muchas Gracias',
@@ -766,6 +776,31 @@ function initLanguageSwitcher() {
   if (savedLang !== 'en') {
     setLanguage(savedLang);
   }
+}
+
+/* ═════════════════════════════════════════════════════════════════════
+   7b. COLLAPSIBLE CORNER CONTROLS (LANGUAGE & MUSIC ARROW TABS)
+   Tapping the small arrow slides the pill buttons away, leaving just the
+   round arrow tab in the corner. Tap it again to bring the controls back.
+   ═════════════════════════════════════════════════════════════════════ */
+function initControlToggles() {
+  const langBar = document.getElementById('lang-control-bar');
+  const langToggle = document.getElementById('lang-collapse-toggle');
+  const audioBar = document.getElementById('audio-control-bar');
+  const audioToggle = document.getElementById('audio-collapse-toggle');
+
+  function bindToggle(bar, btn, hiddenLabel, shownLabel) {
+    if (!bar || !btn) return;
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isCollapsed = bar.classList.toggle('collapsed');
+      btn.setAttribute('aria-expanded', String(!isCollapsed));
+      btn.setAttribute('aria-label', isCollapsed ? shownLabel : hiddenLabel);
+    });
+  }
+
+  bindToggle(langBar, langToggle, 'Hide language selector', 'Show language selector');
+  bindToggle(audioBar, audioToggle, 'Hide music player', 'Show music player');
 }
 
 /* ═════════════════════════════════════════════════════════════════════
