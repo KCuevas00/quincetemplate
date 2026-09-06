@@ -610,6 +610,127 @@ body.site-entered .lang-control-bar {
   margin-top: 0.4rem;
 }
 
+/* ── BESPOKE LUXURY QUINCEAÑERA COUNTDOWN ── */
+.invitation-countdown-block {
+  width: 100%;
+  max-width: 440px;
+  margin: 0.2rem auto 1.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 0.5rem;
+}
+
+.countdown-heading-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  margin-bottom: 0.75rem;
+}
+
+.countdown-accent-fleuron {
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  color: var(--gold-accent);
+  opacity: 0.85;
+}
+
+.countdown-caption {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--text-charcoal);
+  text-transform: uppercase;
+}
+
+.countdown-grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  width: 100%;
+}
+
+.countdown-card {
+  flex: 1;
+  max-width: 80px;
+  background: radial-gradient(circle at 50% 0%, #ffffff 0%, #fdf8f5 100%);
+  border: 1px solid rgba(196, 158, 88, 0.38);
+  border-radius: 14px;
+  padding: 0.7rem 0.3rem 0.55rem;
+  box-shadow: 
+    0 4px 14px rgba(180, 115, 99, 0.08),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.95);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.countdown-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 8px 20px rgba(180, 115, 99, 0.14),
+    inset 0 0 0 1px rgba(255, 255, 255, 1);
+}
+
+.countdown-num {
+  font-family: var(--font-editorial-num);
+  font-size: clamp(1.6rem, 5.5vw, 2.1rem);
+  font-weight: 600;
+  line-height: 1;
+  color: #111111;
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 3px;
+}
+
+.countdown-label {
+  font-family: var(--font-sans);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--rose-gold-dark);
+  text-transform: uppercase;
+}
+
+.countdown-colon {
+  font-family: var(--font-editorial-num);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--gold-accent);
+  line-height: 1;
+  opacity: 0.65;
+  margin-bottom: 0.8rem;
+  user-select: none;
+  animation: colonBlink 2s infinite ease-in-out;
+}
+
+@keyframes colonBlink {
+  0%, 100% { opacity: 0.75; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(0.9); }
+}
+
+@media (max-width: 380px) {
+  .countdown-grid {
+    gap: 0.2rem;
+  }
+  .countdown-card {
+    padding: 0.55rem 0.2rem 0.45rem;
+    border-radius: 10px;
+  }
+  .countdown-num {
+    font-size: 1.45rem;
+  }
+  .countdown-label {
+    font-size: 0.52rem;
+    letter-spacing: 0.08em;
+  }
+}
+
 /* ── INVITATION DUAL VENUES & DIRECTIONS (CHURCH & BALLROOM) ── */
 .invitation-venues-wrapper {
   width: 100%;

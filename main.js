@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initAudioEngine();
   initEntryExperience();
   initLanguageSwitcher();
+  initCountdown();
 });
 
 /* ═════════════════════════════════════════════════════════════════════
@@ -564,6 +565,11 @@ function initLanguageSwitcher() {
       'loc-ceremony-name': 'St. Concord Church',
       'loc-reception-type': 'RECEPTION • 4:30 PM',
       'loc-reception-name': 'The Grand Ballroom',
+      'countdown-title': 'COUNTING DOWN TO THE BIG DAY',
+      'cd-days': 'DAYS',
+      'cd-hours': 'HOURS',
+      'cd-mins': 'MINUTES',
+      'cd-secs': 'SECONDS',
       'lang-label': 'LANGUAGE / IDIOMA:',
       'program-title': 'PROGRAM',
       'program-mass-title': 'MASS',
@@ -610,6 +616,11 @@ function initLanguageSwitcher() {
       'loc-ceremony-name': 'Iglesia St. Concord',
       'loc-reception-type': 'RECEPCIÓN • 4:30 PM',
       'loc-reception-name': 'The Grand Ballroom',
+      'countdown-title': 'CUENTA REGRESIVA PARA EL GRAN DÍA',
+      'cd-days': 'DÍAS',
+      'cd-hours': 'HORAS',
+      'cd-mins': 'MINUTOS',
+      'cd-secs': 'SEGUNDOS',
       'lang-label': 'IDIOMA / LANGUAGE:',
       'program-title': 'PROGRAMA',
       'program-mass-title': 'MISA DE ACCIÓN DE GRACIAS',
@@ -673,5 +684,53 @@ function initLanguageSwitcher() {
   if (savedLang !== 'en') {
     setLanguage(savedLang);
   }
+}
+
+/* ═════════════════════════════════════════════════════════════════════
+   8. QUINCEAÑERA LIVE COUNTDOWN CONTROLLER
+   ═════════════════════════════════════════════════════════════════════ */
+function initCountdown() {
+  const elDays = document.getElementById('cd-days');
+  const elHours = document.getElementById('cd-hours');
+  const elMins = document.getElementById('cd-mins');
+  const elSecs = document.getElementById('cd-secs');
+
+  if (!elDays || !elHours || !elMins || !elSecs) return;
+
+  // Target date for Isabella's Quinceañera: October 15 at 2:00 PM (Ceremony Start)
+  const now = new Date();
+  let targetYear = now.getFullYear();
+  let target = new Date(targetYear, 9, 15, 14, 0, 0); // Month is 0-indexed: 9 = October
+
+  // If this year's date has passed, target next year's celebration
+  if (target.getTime() - now.getTime() < 0) {
+    target = new Date(targetYear + 1, 9, 15, 14, 0, 0);
+  }
+
+  function updateCountdown() {
+    const currentTime = new Date().getTime();
+    const distance = target.getTime() - currentTime;
+
+    if (distance <= 0) {
+      elDays.textContent = '00';
+      elHours.textContent = '00';
+      elMins.textContent = '00';
+      elSecs.textContent = '00';
+      return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    elDays.textContent = String(days).padStart(2, '0');
+    elHours.textContent = String(hours).padStart(2, '0');
+    elMins.textContent = String(minutes).padStart(2, '0');
+    elSecs.textContent = String(seconds).padStart(2, '0');
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
 }
 
