@@ -1,5 +1,5 @@
 /* ═════════════════════════════════════════════════════════════════════
-   QUINCE TEMPLATE — VALERIA MORALES
+   QUINCE TEMPLATE — NAYELI FUENTES
    Full Website Invitation (Clean Flyer Design, No Fake Phone Bezel)
    ═════════════════════════════════════════════════════════════════════ */
 
@@ -173,10 +173,12 @@ body.site-entered .audio-control-bar {
 }
 
 @keyframes soundWave {
+
   0%,
   100% {
     height: 3px;
   }
+
   50% {
     height: 14px;
   }
@@ -323,12 +325,12 @@ body.site-entered .lang-control-bar {
   max-width: 520px;
   margin: 3.6rem auto 3rem;
   background-color: var(--card-white);
-  background-image: 
+  background-image:
     radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.95) 0%, rgba(253, 248, 245, 0.7) 100%),
     url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0 L40 20 L20 40 L0 20 Z' fill='none' stroke='%23d9bba8' stroke-width='0.4' stroke-opacity='0.2'/%3E%3Ccircle cx='20' cy='20' r='1.5' fill='%23c8a060' fill-opacity='0.18'/%3E%3C/svg%3E");
   border: 1px solid rgba(196, 158, 88, 0.28);
   border-radius: 24px;
-  box-shadow: 
+  box-shadow:
     0 25px 70px rgba(180, 115, 99, 0.14),
     0 4px 20px rgba(0, 0, 0, 0.04),
     inset 0 0 0 1px rgba(255, 255, 255, 0.9),
@@ -341,7 +343,8 @@ body.site-entered .lang-control-bar {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  z-index: 25; /* Overlap in front of the letter border & contents */
+  z-index: 25;
+  /* Overlap in front of the letter border & contents */
 }
 
 .invitation-flower-spray {
@@ -409,10 +412,29 @@ body.site-entered .lang-control-bar {
   background-size: contain;
   background-repeat: no-repeat;
 }
-.corner-top-left { top: 12px; left: 12px; }
-.corner-top-right { top: 12px; right: 12px; transform: scaleX(-1); }
-.corner-bottom-left { bottom: 12px; left: 12px; transform: scaleY(-1); }
-.corner-bottom-right { bottom: 12px; right: 12px; transform: scale(-1); }
+
+.corner-top-left {
+  top: 12px;
+  left: 12px;
+}
+
+.corner-top-right {
+  top: 12px;
+  right: 12px;
+  transform: scaleX(-1);
+}
+
+.corner-bottom-left {
+  bottom: 12px;
+  left: 12px;
+  transform: scaleY(-1);
+}
+
+.corner-bottom-right {
+  bottom: 12px;
+  right: 12px;
+  transform: scale(-1);
+}
 
 .invite-section {
   position: relative;
@@ -732,8 +754,17 @@ body.site-entered .lang-control-bar {
 }
 
 @keyframes ptColonPulse {
-  0%, 100% { opacity: 0.65; transform: scale(1); }
-  50% { opacity: 0.25; transform: scale(0.9); }
+
+  0%,
+  100% {
+    opacity: 0.65;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.25;
+    transform: scale(0.9);
+  }
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -1576,7 +1607,7 @@ body.site-entered .lang-control-bar {
   justify-content: center;
   overflow: hidden;
   background-color: #f7f4ec;
-  background-image: 
+  background-image:
     radial-gradient(circle at 50% 45%, #ffffff 0%, #f7f3eb 55%, #ece5d8 100%);
   transition: opacity 0.85s cubic-bezier(0.2, 0.9, 0.3, 1), transform 0.85s cubic-bezier(0.2, 0.9, 0.3, 1), visibility 0.85s;
 }
@@ -1620,7 +1651,8 @@ body.site-entered .lang-control-bar {
   height: 290px;
   max-width: 95vw;
   pointer-events: none;
-  z-index: 25; /* Overlap in front of envelope */
+  z-index: 25;
+  /* Overlap in front of envelope */
 }
 
 .envelope-flower-spray {
@@ -1657,7 +1689,7 @@ body.site-entered .lang-control-bar {
   transform-style: preserve-3d;
   border-radius: 4px;
   background: #c89e6c;
-  box-shadow: 
+  box-shadow:
     0 25px 50px rgba(90, 60, 45, 0.22),
     0 8px 20px rgba(0, 0, 0, 0.08);
   transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
@@ -1666,7 +1698,7 @@ body.site-entered .lang-control-bar {
 
 .luxury-envelope-container:hover {
   transform: translateY(-4px) scale(1.015);
-  box-shadow: 
+  box-shadow:
     0 30px 60px rgba(90, 60, 45, 0.26),
     0 10px 24px rgba(0, 0, 0, 0.1);
 }
@@ -1684,7 +1716,7 @@ body.site-entered .lang-control-bar {
 .env-interior-pattern {
   position: absolute;
   inset: 0;
-  background-image: 
+  background-image:
     repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.08) 0, rgba(255, 255, 255, 0.08) 1px, transparent 0, transparent 20px),
     repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.08) 0, rgba(255, 255, 255, 0.08) 1px, transparent 0, transparent 20px);
 }
@@ -1704,7 +1736,7 @@ body.site-entered .lang-control-bar {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.35s ease 0.32s, transform 0.75s cubic-bezier(0.18, 0.89, 0.32, 1.15) 0.32s, visibility 0.35s ease 0.32s;
+  transition: opacity 0.35s ease 0.32s, transform 0.75s cubic-bezier(0.18, 0.89, 0.32, 1.15) 1s, visibility 0.35s ease 0.32s;
   pointer-events: none;
 }
 
@@ -1735,7 +1767,7 @@ body.site-entered .lang-control-bar {
   margin: 0 auto 10px;
   border-radius: 50%;
   border: 2.5px solid var(--gold-accent);
-  box-shadow: 
+  box-shadow:
     0 0 0 3px rgba(255, 255, 255, 0.9),
     0 6px 18px rgba(189, 120, 107, 0.28);
   overflow: hidden;
@@ -1792,7 +1824,7 @@ body.site-entered .lang-control-bar {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: 
+  background-image:
     linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0%, transparent 45%),
     linear-gradient(-135deg, rgba(0, 0, 0, 0.08) 0%, transparent 45%);
   pointer-events: none;
@@ -1874,10 +1906,13 @@ body.site-entered .lang-control-bar {
 }
 
 @keyframes sealHaloBreathe {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.55;
     transform: translate(-50%, -50%) scale(0.92);
   }
+
   50% {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1.22);
@@ -1891,9 +1926,11 @@ body.site-entered .lang-control-bar {
     border-color: rgba(235, 180, 160, 0.85);
     box-shadow: 0 0 15px rgba(235, 180, 160, 0.6);
   }
+
   60% {
     opacity: 0.4;
   }
+
   100% {
     transform: translate(-50%, -50%) scale(1.7);
     opacity: 0;
@@ -1925,10 +1962,13 @@ body.site-entered .lang-control-bar {
 }
 
 @keyframes stampPulseGlow {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
     filter: drop-shadow(0 4px 12px rgba(160, 80, 65, 0.35)) drop-shadow(0 0 10px rgba(245, 200, 190, 0.45));
   }
+
   50% {
     transform: scale(1.05);
     filter: drop-shadow(0 6px 18px rgba(160, 80, 65, 0.55)) drop-shadow(0 0 22px rgba(250, 215, 205, 0.85)) drop-shadow(0 0 32px rgba(217, 175, 55, 0.4));
@@ -1949,40 +1989,48 @@ body.site-entered .lang-control-bar {
     width: 360px;
     height: 280px;
   }
+
   .flower-top-right {
     top: -45px;
     right: -35px;
     width: 190px;
     height: 190px;
   }
+
   .flower-bottom-left {
     bottom: -45px;
     left: -35px;
     width: 190px;
     height: 190px;
   }
+
   .luxury-envelope-container {
     width: 320px;
     height: 220px;
   }
+
   .env-pocket {
     inset: 0;
     width: 100%;
     height: 100%;
     clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0, 50% 112px);
   }
+
   .env-flap {
     height: 138px;
   }
+
   .env-wax-seal-wrapper {
     top: 104px;
   }
+
   .flower-card-top-right {
     top: -38px;
     right: -25px;
     width: 180px;
     height: 180px;
   }
+
   .flower-card-bottom-left {
     bottom: -38px;
     left: -25px;
@@ -1996,19 +2044,23 @@ body.site-entered .lang-control-bar {
     left: 0.75rem;
     padding: 2px 4px;
   }
+
   .lang-control-bar .lang-pill-btn {
     padding: 0.25rem 0.52rem;
     font-size: 0.68rem;
   }
+
   .audio-control-bar {
     top: 0.75rem;
     right: 0.75rem;
     padding: 3px 6px 3px 4px;
     gap: 0.25rem;
   }
+
   .audio-volume-panel {
     padding-left: 0.25rem;
   }
+
   .volume-slider {
     width: 44px;
   }
@@ -2019,16 +2071,20 @@ body.site-entered .lang-control-bar {
     width: calc(100% - 20px);
     border-radius: 20px;
   }
+
   .cover-section {
     padding-top: 1.5rem;
     padding-bottom: 2rem;
   }
+
   .photo-stage {
     margin: 0.6rem auto 1.5rem;
   }
+
   .quince-script-title {
     font-size: 3.5rem;
   }
+
   .celebrant-name {
     font-size: 1.75rem;
   }
@@ -2038,34 +2094,43 @@ body.site-entered .lang-control-bar {
     max-width: 100%;
     padding: 0 0.5rem;
   }
+
   .timeline-row {
     grid-template-columns: 1fr 42px 1fr;
     min-height: 70px;
     padding: 0.25rem 0;
   }
+
   .row-left .time-block {
     padding-right: 0.65rem;
   }
+
   .row-right .time-block {
     padding-left: 0.65rem;
   }
+
   .timeline-node {
     width: 32px;
     height: 32px;
   }
+
   .tl-icon {
     width: 16px;
     height: 16px;
   }
+
   .time-stamp {
     font-size: 0.96rem;
   }
+
   .event-title {
     font-size: 0.78rem;
   }
+
   .event-desc {
     font-size: 0.64rem;
   }
+
   .timeline-loc-btn {
     padding: 0.2rem 0.48rem;
     font-size: 0.56rem;
@@ -2115,6 +2180,7 @@ body.site-entered .lang-control-bar {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .scroll-fade-in,
   .scroll-fade-scale {
     opacity: 1 !important;
@@ -2122,4 +2188,3 @@ body.site-entered .lang-control-bar {
     transition: none !important;
   }
 }
-

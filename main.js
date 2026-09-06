@@ -1,6 +1,6 @@
 /**
  * ═════════════════════════════════════════════════════════════════════
- * QUINCE TEMPLATE — VALERIA MORALES
+ * QUINCE TEMPLATE — NAYELI FUENTES
  * Interactive Controller: Smooth Navigation, RSVP Modal, Confetti & Audio
  * ═════════════════════════════════════════════════════════════════════
  */
@@ -262,7 +262,7 @@ function initAudioEngine() {
       try {
         audio.currentTime = START_TIME;
         hasSetInitialTime = true;
-      } catch (e) {}
+      } catch (e) { }
     }
   }
 
@@ -370,7 +370,7 @@ function initAudioEngine() {
   audio.addEventListener('ended', () => {
     try {
       audio.currentTime = START_TIME;
-      audio.play().catch(() => {});
+      audio.play().catch(() => { });
     } catch (e) {
       updatePlayState(false);
     }
