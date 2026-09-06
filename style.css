@@ -62,10 +62,15 @@ body {
 }
 
 /* Prevent accidental scrolling while envelope is closed */
+html:not(.site-entered),
 body:not(.site-entered) {
   overflow: hidden !important;
+  height: 100% !important;
   height: 100vh !important;
-  touch-action: none;
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100% !important;
+  touch-action: none !important;
 }
 
 /* Background bokeh sparkle canvas */

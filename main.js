@@ -10,7 +10,20 @@ document.addEventListener('DOMContentLoaded', () => {
   if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
   }
+  document.documentElement.style.scrollBehavior = 'auto';
   window.scrollTo(0, 0);
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+
+  // Keep pinned to top while envelope has not opened
+  const pinToTopBeforeEnter = () => {
+    if (!document.body.classList.contains('site-entered')) {
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    }
+  };
+  window.addEventListener('scroll', pinToTopBeforeEnter, { passive: true });
 
   initRSVPModal();
   initAmbientCanvas();
@@ -499,8 +512,9 @@ function initEntryExperience() {
     if (isEnvelopeOpen) return;
     isEnvelopeOpen = true;
 
-    // Force page to the top immediately when the envelope is opened
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    // Force page to the top immediately with zero delay
+    document.documentElement.style.scrollBehavior = 'auto';
+    window.scrollTo(0, 0);
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
 
@@ -516,34 +530,44 @@ function initEntryExperience() {
       window.playAmbientSong();
     }
 
-    // 4. Smoothly transition to the page once the card has fully emerged and been viewed
+    // 4. Smoothly transition to the page much sooner (850ms)
     setTimeout(() => {
       enterWebsite();
-    }, 1500);
+    }, 850);
   }
 
   // Action: Enter the Full Website
   function enterWebsite() {
-    // Ensure page is pinned strictly to the top upon entering
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    // Snap to top immediately before and during reveal
+    document.documentElement.style.scrollBehavior = 'auto';
+    window.scrollTo(0, 0);
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
 
     document.body.classList.add('site-entered');
+    document.documentElement.classList.add('site-entered');
     overlay.classList.add('fade-out');
 
     if (typeof window.playAmbientSong === 'function') {
       window.playAmbientSong();
     }
 
-    setTimeout(() => {
-      overlay.style.display = 'none';
-      // Force once more after overlay is removed to be 100% sure
+    requestAnimationFrame(() => {
       window.scrollTo(0, 0);
       document.documentElement.scrollTop = 0;
       document.body.scrollTop = 0;
-      // Sakura petals remain continuously falling over the invitation letter and Isabella's photo
-    }, 850);
+    });
+
+    setTimeout(() => {
+      overlay.style.display = 'none';
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      // Re-enable smooth scrolling after page is entered
+      setTimeout(() => {
+        document.documentElement.style.scrollBehavior = '';
+      }, 50);
+    }, 600);
   }
 
   // Bind Interactions
