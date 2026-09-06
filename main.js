@@ -506,7 +506,7 @@ function initEntryExperience() {
     // 4. Smoothly transition to the page once the card has fully emerged and been viewed
     setTimeout(() => {
       enterWebsite();
-    }, 1250);
+    }, 1500);
   }
 
   // Action: Enter the Full Website

@@ -1305,7 +1305,7 @@ body.site-entered .lang-control-bar {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.35s ease 0.25s, transform 0.75s cubic-bezier(0.18, 0.89, 0.32, 1.15) 0.25s, visibility 0.35s ease 0.25s;
+  transition: opacity 0.35s ease 0.32s, transform 0.75s cubic-bezier(0.18, 0.89, 0.32, 1.15) 0.32s, visibility 0.35s ease 0.32s;
   pointer-events: none;
 }
 
@@ -1414,13 +1414,12 @@ body.site-entered .lang-control-bar {
   clip-path: polygon(0 0, 100% 0, 50% 100%);
   background: linear-gradient(160deg, #caa170 0%, #bd9362 100%);
   border-top: 1px solid rgba(255, 255, 255, 0.3);
-  backface-visibility: hidden;
 }
 
 .luxury-envelope-container.is-opened .env-flap {
-  transform: rotateX(180deg) translateZ(-6px);
-  z-index: 1;
-  filter: none;
+  transform: rotateX(180deg);
+  z-index: 15;
+  filter: drop-shadow(0 -4px 10px rgba(60, 35, 20, 0.16));
 }
 
 /* ── LUMINOUS GLOWING WAX SEAL / STAMP ANIMATION (NO WORDS NEEDED) ── */
