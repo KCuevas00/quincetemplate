@@ -635,17 +635,6 @@ body.site-entered .audio-control-bar {
   box-shadow: none;
 }
 
-/* ── Primary Pure Typographic Block (Editorial Classic) ── */
-.pt-countdown-block {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 2.2rem;
-  background: none;
-  border: none;
-  box-shadow: none;
-}
 
 .pt-header {
   display: flex;
@@ -742,74 +731,9 @@ body.site-entered .audio-control-bar {
   50% { opacity: 0.25; transform: scale(0.9); }
 }
 
-/* ── Pure Typography Exploration Tray ── */
-.pt-variations-tray {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 2.2rem;
-  margin-top: 1rem;
-  padding-top: 1.5rem;
-  border-top: 1px dashed rgba(200, 134, 118, 0.35);
-}
-
-.pt-tray-header {
-  text-align: center;
-  margin-bottom: 0.5rem;
-}
-
-.pt-tray-tag {
-  font-family: var(--font-sans);
-  font-size: 0.62rem;
-  font-weight: 800;
-  letter-spacing: 0.22em;
-  color: var(--rose-gold-dark);
-  text-transform: uppercase;
-}
-
-.pt-variation-row {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.6rem;
-  width: 100%;
-}
-
-.pt-var-label {
-  font-family: var(--font-sans);
-  font-size: 0.6rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  color: var(--text-muted);
-  text-transform: uppercase;
-}
-
 /* ─────────────────────────────────────────────────────────────
-   TYPOGRAPHIC STYLE 2: METALLIC ROSE GOLD FOIL
-   Hot-stamped metallic gradient directly on letterforms
-   ───────────────────────────────────────────────────────────── */
-.pt-style-foil .pt-big-num {
-  background: linear-gradient(135deg, #c88676 0%, #b87a6a 30%, #f7d4cb 65%, #ab695a 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 2px 8px rgba(200, 134, 118, 0.25));
-  font-weight: 600;
-}
-
-.pt-style-foil .pt-colon {
-  font-size: 0.9rem;
-  margin-top: 0.8rem;
-  color: var(--gold-accent);
-}
-
-.pt-style-foil .pt-sublabel {
-  color: var(--gold-accent);
-  letter-spacing: 0.3em;
-}
-
-/* ─────────────────────────────────────────────────────────────
-   TYPOGRAPHIC STYLE 3: ROMANTIC CALLIGRAPHIC ITALIC
-   Graceful slanted serif numerals with fleuron ornaments
+   TYPOGRAPHIC COUNTDOWN: ROMANTIC CALLIGRAPHIC ITALIC (STYLE 3)
+   Graceful slanted serif numerals with warm fleuron ornaments
    ───────────────────────────────────────────────────────────── */
 .pt-style-italic .pt-big-num {
   font-family: var(--font-serif);
@@ -829,59 +753,10 @@ body.site-entered .audio-control-bar {
 .pt-style-italic .pt-sublabel {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 0.7rem;
-  letter-spacing: 0.15em;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
   color: var(--rose-gold-dark);
-  text-transform: lowercase;
-}
-
-/* ─────────────────────────────────────────────────────────────
-   TYPOGRAPHIC STYLE 4: MONOLITHIC SCULPTED HIGH-FASHION SERIF
-   Statuesque editorial numbers with clean slashes
-   ───────────────────────────────────────────────────────────── */
-.pt-style-monolithic .pt-big-num {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-weight: 400;
-  font-size: clamp(3rem, 9.5vw, 4.4rem);
-  color: #111111;
-  letter-spacing: -0.03em;
-}
-
-.pt-style-monolithic .pt-slash {
-  font-family: var(--font-sans);
-  font-size: clamp(1.8rem, 5.5vw, 2.6rem);
-  font-weight: 200;
-  color: rgba(200, 134, 118, 0.5);
-  margin-top: 0.3rem;
-  user-select: none;
-}
-
-.pt-style-monolithic .pt-sublabel {
-  font-weight: 800;
-  color: #1a1a1a;
-  letter-spacing: 0.3em;
-}
-
-/* ─────────────────────────────────────────────────────────────
-   TYPOGRAPHIC STYLE 5: CLASSICAL ROMAN DOT
-   Bold numerals punctuated by classical floating mid-dots
-   ───────────────────────────────────────────────────────────── */
-.pt-style-romandot .pt-big-num {
-  font-family: var(--font-editorial-num);
-  font-weight: 700;
-  color: #241916;
-}
-
-.pt-style-romandot .pt-romandot {
-  font-size: 1.6rem;
-  color: var(--gold-accent);
-  margin-top: 0.7rem;
-  line-height: 1;
-}
-
-.pt-style-romandot .pt-sublabel {
-  letter-spacing: 0.22em;
-  color: var(--rose-gold-dark);
+  text-transform: capitalize;
 }
 
 /* ── INVITATION VENUE HINT ── */
