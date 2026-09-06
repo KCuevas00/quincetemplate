@@ -1,57 +1,41 @@
 /**
  * ═════════════════════════════════════════════════════════════════════
  * QUINCE TEMPLATE — ISABELLA SMITH
- * Interactive Controller: Screen Switcher, RSVP Modal, Confetti & Audio
+ * Interactive Controller: Smooth Navigation, RSVP Modal, Confetti & Audio
  * ═════════════════════════════════════════════════════════════════════
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  initCardSwitcher();
+  initScrollNavigation();
   initRSVPModal();
   initAmbientCanvas();
   initAudioEngine();
 });
 
 /* ═════════════════════════════════════════════════════════════════════
-   1. CARD NAVIGATION & SCREEN SWITCHER
+   1. SMOOTH SCROLL NAVIGATION & ACTIVE SECTION HIGHLIGHTING
    ═════════════════════════════════════════════════════════════════════ */
-function initCardSwitcher() {
-  const tabs = document.querySelectorAll('.nav-tab');
-  const cards = document.querySelectorAll('.invitation-card');
-  const phoneScreen = document.querySelector('.phone-screen');
+function initScrollNavigation() {
+  const navLinks = document.querySelectorAll('.nav-link');
+  const sections = document.querySelectorAll('.invite-section');
 
-  function switchCard(targetId) {
-    cards.forEach(card => {
-      if (card.id === targetId) {
-        card.classList.add('card-active');
-      } else {
-        card.classList.remove('card-active');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    const scrollPos = window.pageYOffset + 140;
+
+    sections.forEach(section => {
+      const top = section.offsetTop;
+      const height = section.offsetHeight;
+      if (scrollPos >= top && scrollPos < top + height) {
+        current = section.getAttribute('id');
       }
     });
 
-    tabs.forEach(tab => {
-      if (tab.dataset.target === targetId) {
-        tab.classList.add('active');
-      } else {
-        tab.classList.remove('active');
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === `#${current}`) {
+        link.classList.add('active');
       }
-    });
-
-    if (phoneScreen) {
-      phoneScreen.scrollTop = 0;
-    }
-  }
-
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      switchCard(tab.dataset.target);
-    });
-  });
-
-  // Next buttons inside cards
-  document.querySelectorAll('[data-jump]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      switchCard(btn.dataset.jump);
     });
   });
 }
@@ -146,7 +130,7 @@ function triggerCelebrationConfetti() {
 
   const colors = ['#d39585', '#f7d8ce', '#c49e58', '#f4d3c9', '#ffffff', '#e8a594'];
 
-  for (let i = 0; i < 70; i++) {
+  for (let i = 0; i < 75; i++) {
     const angle = Math.random() * Math.PI * 2;
     const speed = Math.random() * 8 + 3;
     confettiParticles.push({
@@ -214,16 +198,16 @@ function initAmbientCanvas() {
   });
 
   const bokehs = [];
-  const count = window.innerWidth < 600 ? 18 : 35;
+  const count = window.innerWidth < 600 ? 16 : 30;
 
   for (let i = 0; i < count; i++) {
     bokehs.push({
       x: Math.random() * width,
       y: Math.random() * height,
-      radius: Math.random() * 22 + 8,
-      speedY: -(Math.random() * 0.25 + 0.08),
-      speedX: (Math.random() - 0.5) * 0.2,
-      alpha: Math.random() * 0.35 + 0.1,
+      radius: Math.random() * 20 + 6,
+      speedY: -(Math.random() * 0.22 + 0.06),
+      speedX: (Math.random() - 0.5) * 0.18,
+      alpha: Math.random() * 0.3 + 0.08,
       color: Math.random() > 0.5 ? '255, 255, 255' : '247, 216, 206'
     });
   }
